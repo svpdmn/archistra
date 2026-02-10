@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archistra — Enterprise Control, Reimagined</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-0: #0b1220;
+      --bg-1: #0f1b2d;
+      --surface-0: #121f33;
+      --surface-1: #162844;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --text-1: rgba(255, 255, 255, 0.92);
+      --text-2: rgba(255, 255, 255, 0.72);
+      --text-3: rgba(255, 255, 255, 0.52);
+      --accent-500: #3b82f6;
+      --accent-400: #60a5fa;
+      --accent-200: #bfdbfe;
+      --info-500: #38bdf8;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+
+      --e1: 0 8px 24px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.05);
+      --e2: 0 16px 48px rgba(0, 0, 0, 0.45);
+      --e3: 0 24px 80px rgba(0, 0, 0, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: "Inter", "SF Pro Text", "IBM Plex Sans", "Source Sans 3", sans-serif;
+      background: radial-gradient(circle at 12% -10%, rgba(96, 165, 250, 0.13), transparent 40%),
+        radial-gradient(circle at 88% 110%, rgba(59, 130, 246, 0.12), transparent 44%),
+        linear-gradient(160deg, var(--bg-0), var(--bg-1));
+      color: var(--text-1);
+      letter-spacing: -0.01em;
+    }
+
+    body {
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: min(1200px, 100%);
+      display: grid;
+      gap: 24px;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px) saturate(1.05);
+      -webkit-backdrop-filter: blur(12px) saturate(1.05);
+      position: relative;
+    }
+
+    .glass::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .nav {
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--e1);
+    }
+
+    .brand {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-200);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--accent-400), var(--info-500));
+      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--text-2);
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 160ms ease-out;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-1);
+    }
+
+    .hero {
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 5vw, 48px);
+      display: grid;
+      gap: 32px;
+      grid-template-columns: 1.3fr 1fr;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(20px) saturate(1.1);
+      -webkit-backdrop-filter: blur(20px) saturate(1.1);
+      box-shadow: var(--e3);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.06;
+      font-weight: 600;
+      max-width: 16ch;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--text-2);
+      max-width: 58ch;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 11px 17px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 160ms ease-out, transform 160ms ease-out, border-color 160ms ease-out;
+    }
+
+    .btn-primary {
+      background: var(--accent-500);
+      color: #071428;
+      box-shadow: 0 8px 18px rgba(59, 130, 246, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-400);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-1);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .kpi-panel {
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, rgba(18, 31, 51, 0.92), rgba(15, 27, 45, 0.88));
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--e1);
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .kpi-row {
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .kpi-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .kpi-label {
+      color: var(--text-3);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    .kpi-value {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-1);
+    }
+
+    .badge {
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border: 1px solid transparent;
+    }
+
+    .badge.success {
+      background: rgba(34, 197, 94, 0.12);
+      color: #86efac;
+      border-color: rgba(34, 197, 94, 0.24);
+    }
+
+    .badge.warning {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fde68a;
+      border-color: rgba(245, 158, 11, 0.24);
+    }
+
+    .features {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .feature-card {
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--e1);
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--text-2);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .feature-meta {
+      color: var(--text-3);
+      font-size: 13px;
+    }
+
+    .footer {
+      color: var(--text-3);
+      font-size: 13px;
+      text-align: center;
+      padding: 8px;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="nav glass" aria-label="Primary navigation">
+      <div class="brand"><span class="brand-dot"></span>Archistra</div>
+      <nav class="nav-links">
+        <a href="#platform">Platform</a>
+        <a href="#security">Security</a>
+        <a href="#ops">Operations</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero glass" id="platform" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title">Enterprise orchestration with calm, glass-forward clarity.</h1>
+        <p>
+          Build, monitor, and govern distributed systems from a single command surface.
+          Archistra pairs matte precision with frosted depth to keep high-volume operations readable,
+          predictable, and secure.
+        </p>
+        <div class="actions">
+          <button class="btn-primary">Request a demo</button>
+          <button class="btn-secondary">View architecture brief</button>
+        </div>
+      </div>
+
+      <aside class="kpi-panel" aria-label="Operational summary">
+        <div class="kpi-row">
+          <span class="kpi-label">Regional uptime</span>
+          <span class="kpi-value">99.995%</span>
+        </div>
+        <div class="kpi-row">
+          <span class="kpi-label">Policy violations</span>
+          <span class="kpi-value">14 <span class="badge warning">reviewing</span></span>
+        </div>
+        <div class="kpi-row">
+          <span class="kpi-label">Automated remediations</span>
+          <span class="kpi-value">4,238 <span class="badge success">stable</span></span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="features" id="ops" aria-label="Core capabilities">
+      <article class="feature-card glass">
+        <h3>Unified command fabric</h3>
+        <p>
+          Control cloud, edge, and on-prem runtimes from one governance layer with predictable
+          role boundaries.
+        </p>
+        <span class="feature-meta">Policy graph • Change controls • Audit by default</span>
+      </article>
+
+      <article class="feature-card glass" id="security">
+        <h3>Security-native workflows</h3>
+        <p>
+          Shift compliance left with continuous posture checks, immutable trails, and calibrated
+          escalation paths.
+        </p>
+        <span class="feature-meta">SOC2-aligned controls • Scoped tokens • Drift detection</span>
+      </article>
+
+      <article class="feature-card glass" id="contact">
+        <h3>Calm operational experience</h3>
+        <p>
+          Dense telemetry is translated into concise decisions through restrained motion,
+          subtle hierarchy, and low-fatigue contrast.
+        </p>
+        <span class="feature-meta">14-day onboarding • Dedicated solutions architect</span>
+      </article>
+    </section>
+
+    <footer class="footer">© 2026 Archistra Systems • Enterprise Minimalist Glass UI Concept</footer>
+  </main>
+</body>
+</html>
