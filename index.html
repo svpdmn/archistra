@@ -193,29 +193,53 @@
 
             .btn {
                 @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold u-calm;
+                border: 1px solid rgba(255,255,255,0.38);
+                color: rgba(236, 241, 248, 0.96);
+                background-image:
+                    linear-gradient(120deg, rgba(255,255,255,0.35) 0%, rgba(221,229,238,0.2) 22%, rgba(164,174,186,0.3) 48%, rgba(246,249,252,0.26) 70%, rgba(137,146,158,0.34) 100%),
+                    radial-gradient(circle at top, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0) 56%);
+                box-shadow:
+                    inset 0 1px 0 rgba(255,255,255,0.5),
+                    inset 0 -16px 24px rgba(35,42,54,0.34),
+                    0 8px 16px rgba(0,0,0,0.3);
+                text-shadow: 0 1px 1px rgba(8, 11, 18, 0.35);
             }
             .btn-primary {
-                background: #3B82F6;
-                color: #071428;
+                border-color: rgba(194, 206, 219, 0.62);
             }
             .btn-primary:hover { filter: brightness(1.05); }
             .btn-primary:active { filter: brightness(0.98); }
 
             .btn-secondary {
-                background: rgba(255,255,255,0.04);
-                border: 1px solid rgba(255,255,255,0.10);
-                color: rgba(255,255,255,0.92);
+                border-color: rgba(180, 191, 206, 0.58);
             }
             .btn-secondary:hover { background: rgba(255,255,255,0.06); }
 
             .btn-ghost {
-                background: transparent;
-                border: 1px solid rgba(255,255,255,0.08);
-                color: rgba(255,255,255,0.72);
+                border-color: rgba(176, 188, 202, 0.52);
+                color: rgba(233, 239, 247, 0.9);
             }
             .btn-ghost:hover { 
                 background: rgba(255,255,255,0.03); 
                 color: rgba(255,255,255,0.92); 
+            }
+
+            a {
+                border: 1px solid rgba(255,255,255,0.26);
+                border-radius: 0.45rem;
+                padding: 0.2rem 0.45rem;
+                color: rgba(236, 242, 250, 0.95);
+                background-image:
+                    linear-gradient(125deg, rgba(255,255,255,0.26) 0%, rgba(196,206,218,0.15) 25%, rgba(150,162,177,0.24) 50%, rgba(236,242,250,0.2) 70%, rgba(122,134,150,0.26) 100%);
+                box-shadow:
+                    inset 0 1px 0 rgba(255,255,255,0.38),
+                    inset 0 -10px 18px rgba(31, 37, 49, 0.28),
+                    0 4px 12px rgba(0, 0, 0, 0.2);
+                transition: all 220ms cubic-bezier(0.2,0.8,0.2,1);
+            }
+            a:hover {
+                filter: brightness(1.08);
+                border-color: rgba(255,255,255,0.45);
             }
 
             .badge {
@@ -377,11 +401,6 @@
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <!-- CTA Button -->
-                    <button class="btn btn-primary hidden sm:inline-flex text-xs px-4 lg:px-6 py-2 font-alt">
-                        Get Started
-                    </button>
-
                     <!-- Mobile Menu Toggle -->
                     <button id="mobile-menu-toggle" class="md:hidden btn btn-ghost p-2" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -396,7 +415,6 @@
                 <a href="#stats" class="block u-text-2 hover:text-accent-400 u-calm">PERFORMANCE</a>
                 <a href="#solutions" class="block u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
                 <a href="#contact" class="block u-text-2 hover:text-accent-400 u-calm">CONTACT</a>
-                <button class="btn btn-primary w-full text-xs font-alt">Get Started</button>
             </div>
         </div>
     </nav>
