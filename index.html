@@ -397,24 +397,12 @@
                 <div class="hidden md:flex items-center gap-6 lg:gap-8 font-alt text-xs tracking-wider">
                 <div class="hidden md:flex items-center gap-8 font-alt text-xs tracking-wider">
                     <a href="#services" class="u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
-                    <a href="#contact" class="u-text-2 hover:text-accent-400 u-calm">READY TO TRANSFORM?</a>
                 </div>
-
-                <div class="flex items-center gap-2">
-                    <!-- Mobile Menu Toggle -->
-                    <button id="mobile-menu-toggle" class="md:hidden btn btn-ghost p-2" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <div id="mobile-menu" class="md:hidden hidden mt-3 rounded-md card p-4 space-y-3 font-alt text-xs tracking-wider">
-                <a href="#services" class="block u-text-2 hover:text-accent-400 u-calm">SERVICES</a>
-                <a href="#stats" class="block u-text-2 hover:text-accent-400 u-calm">PERFORMANCE</a>
-                <a href="#solutions" class="block u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
-                <a href="#contact" class="block u-text-2 hover:text-accent-400 u-calm">CONTACT</a>
+                
+                <!-- CTA Button -->
+                <button class="btn btn-primary text-xs px-6 py-2 font-alt">
+                    READY TO TRANSFORM?
+                </button>
             </div>
         </div>
     </nav>
@@ -480,6 +468,75 @@
             <div class="grid gap-6 md:grid-cols-3 md:gap-8">
                 <!-- Service 1 -->
                 <div class="card-strong p-6 sm:p-8 hover-glow shimmer u-hover-lift u-panel">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-bg-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-alt font-semibold mb-4">Business Capabilities</h3>
+                    <p class="u-text-2 mb-6 leading-relaxed">
+                        AI-powered data integration and orchestration across distributed enterprise systems. 
+                        Transform siloed data into unified, actionable intelligence.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge font-mono">DATA MESH</span>
+                        <span class="badge font-mono">ML OPS</span>
+                        <span class="badge font-mono">GOVERNANCE</span>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="card-strong p-8 hover-glow shimmer u-hover-lift u-panel">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-200 to-accent-400 flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-bg-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-alt font-semibold mb-4">Enterprise Architecture</h3>
+                    <p class="u-text-2 mb-6 leading-relaxed">
+                        Deploy intelligent automation that learns and adapts. Reduce operational complexity 
+                        while maintaining enterprise-grade security and compliance.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge font-mono">RPA+AI</span>
+                        <span class="badge font-mono">NLP</span>
+                        <span class="badge font-mono">DECISION AI</span>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="card-strong p-8 hover-glow shimmer u-hover-lift u-panel">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-bg-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-alt font-semibold mb-4">Technical Landscape</h3>
+                    <p class="u-text-2 mb-6 leading-relaxed">
+                        Real-time analytics and forecasting powered by advanced ML models. 
+                        Make data-driven decisions with confidence at enterprise scale.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge font-mono">FORECASTING</span>
+                        <span class="badge font-mono">BI+AI</span>
+                        <span class="badge font-mono">REAL-TIME</span>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="relative py-32 px-6" style="z-index: 2;">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <div class="font-mono text-accent-400 text-xs mb-4 tracking-widest">CORE CAPABILITIES</div>
+                <h2 class="section-title text-4xl md:text-5xl font-display font-bold mb-6">Enterprise AI Services</h2>
+                <p class="lead max-w-3xl mx-auto">
+                    Purpose-built AI solutions for complex enterprise architecture challenges
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="card-strong p-8 hover-glow shimmer u-hover-lift u-panel">
                     <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-bg-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
