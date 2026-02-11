@@ -330,9 +330,26 @@
         }
 
         /* Responsive text sizing */
+
         @media (max-width: 768px) {
             .hero-title { font-size: 2.25rem !important; }
             .section-title { font-size: 2rem !important; }
+        }
+
+        @media (max-width: 640px) {
+            body { background-attachment: scroll; }
+            .lead { font-size: 15px; line-height: 1.55; }
+            .badge { font-size: 10px; }
+            .hover-glow:hover { transform: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
@@ -342,39 +359,53 @@
 
     <!-- Navigation -->
     <nav class="fixed w-full top-0 z-50" style="background: rgba(11, 18, 32, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between gap-3">
                 <!-- Logo -->
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center">
-                        <span class="text-bg-0 font-semibold text-xl">A</span>
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center">
+                        <span class="text-bg-0 font-semibold text-lg sm:text-xl">A</span>
                     </div>
-                    <span class="text-2xl font-semibold font-display logo-glow">archistra</span>
+                    <span class="text-xl sm:text-2xl font-semibold font-display logo-glow">archistra</span>
                 </div>
-                
+
                 <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-6 lg:gap-8 font-alt text-xs tracking-wider">
                 <div class="hidden md:flex items-center gap-8 font-alt text-xs tracking-wider">
                     <a href="#services" class="u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
                     <a href="#contact" class="u-text-2 hover:text-accent-400 u-calm">READY TO TRANSFORM?</a>
-                    <a href="#services" class="u-text-2 hover:text-accent-400 u-calm">SERVICES</a>
-                    <a href="#stats" class="u-text-2 hover:text-accent-400 u-calm">PERFORMANCE</a>
-                    <a href="#solutions" class="u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
-                    <a href="#contact" class="u-text-2 hover:text-accent-400 u-calm">CONTACT</a>
                 </div>
-                
-                <!-- CTA Button -->
-                <button class="btn btn-primary text-xs px-6 py-2 font-alt">
-                    Get Started
-                </button>
+
+                <div class="flex items-center gap-2">
+                    <!-- CTA Button -->
+                    <button class="btn btn-primary hidden sm:inline-flex text-xs px-4 lg:px-6 py-2 font-alt">
+                        Get Started
+                    </button>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button id="mobile-menu-toggle" class="md:hidden btn btn-ghost p-2" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="md:hidden hidden mt-3 rounded-md card p-4 space-y-3 font-alt text-xs tracking-wider">
+                <a href="#services" class="block u-text-2 hover:text-accent-400 u-calm">SERVICES</a>
+                <a href="#stats" class="block u-text-2 hover:text-accent-400 u-calm">PERFORMANCE</a>
+                <a href="#solutions" class="block u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
+                <a href="#contact" class="block u-text-2 hover:text-accent-400 u-calm">CONTACT</a>
+                <button class="btn btn-primary w-full text-xs font-alt">Get Started</button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20 px-6" style="z-index: 2;">
+    <section class="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-6xl mx-auto text-center">
             <div class="font-mono text-accent-400 text-xs mb-6 fade-in tracking-widest">ENTERPRISE AI SERVICES</div>
-            <h1 class="hero-title text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-8 fade-in-up delay-100">
+            <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-8 fade-in-up delay-100">
                 Fragments to<br/>
                 <span class="bg-gradient-to-r from-accent-200 via-accent-400 to-accent-500 bg-clip-text text-transparent">
                     Intelligence
@@ -387,27 +418,27 @@
                 From fragmented data to unified insights.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-300">
-                <button class="btn btn-primary px-8 py-4 text-base font-semibold font-alt">
+                <button class="btn btn-primary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold font-alt">
                     Schedule Consultation
                 </button>
-                <button class="btn btn-secondary px-8 py-4 text-base font-semibold font-alt">
+                <button class="btn btn-secondary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold font-alt">
                     View Case Studies
                 </button>
             </div>
             
             <!-- Hero Stats -->
-            <div class="mt-20 fade-in-up delay-400">
-                <div class="card-strong p-8 max-w-4xl mx-auto shimmer">
-                    <div class="grid grid-cols-3 gap-4">
-                        <div class="card p-6 rounded-lg text-center hover-glow u-hover-lift u-panel">
+            <div class="mt-14 sm:mt-20 fade-in-up delay-400">
+                <div class="card-strong p-5 sm:p-8 max-w-4xl mx-auto shimmer">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="card p-4 sm:p-6 rounded-lg text-center hover-glow u-hover-lift u-panel">
                             <div class="font-mono text-accent-400 text-xs mb-2">PRECISION</div>
                             <div class="text-3xl font-semibold font-alt">98.7%</div>
                         </div>
-                        <div class="card p-6 rounded-lg text-center hover-glow u-hover-lift u-panel">
+                        <div class="card p-4 sm:p-6 rounded-lg text-center hover-glow u-hover-lift u-panel">
                             <div class="font-mono text-accent-200 text-xs mb-2">MODELS</div>
                             <div class="text-3xl font-semibold font-alt">500+</div>
                         </div>
-                        <div class="card p-6 rounded-lg text-center hover-glow u-hover-lift u-panel">
+                        <div class="card p-4 sm:p-6 rounded-lg text-center hover-glow u-hover-lift u-panel">
                             <div class="font-mono text-accent-400 text-xs mb-2">UPTIME</div>
                             <div class="text-3xl font-semibold font-alt">99.9%</div>
                         </div>
@@ -418,7 +449,7 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="relative py-32 px-6" style="z-index: 2;">
+    <section id="services" class="relative py-20 md:py-32 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20">
                 <div class="font-mono text-accent-400 text-xs mb-4 tracking-widest">CORE CAPABILITIES</div>
@@ -428,9 +459,9 @@
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid gap-6 md:grid-cols-3 md:gap-8">
                 <!-- Service 1 -->
-                <div class="card-strong p-8 hover-glow shimmer u-hover-lift u-panel">
+                <div class="card-strong p-6 sm:p-8 hover-glow shimmer u-hover-lift u-panel">
                     <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-bg-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
@@ -518,7 +549,7 @@
                 </div>
 
                 <!-- Service 2 -->
-                <div class="card-strong p-8 hover-glow shimmer u-hover-lift u-panel">
+                <div class="card-strong p-6 sm:p-8 hover-glow shimmer u-hover-lift u-panel">
                     <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-200 to-accent-400 flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-bg-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -537,7 +568,7 @@
                 </div>
 
                 <!-- Service 3 -->
-                <div class="card-strong p-8 hover-glow shimmer u-hover-lift u-panel">
+                <div class="card-strong p-6 sm:p-8 hover-glow shimmer u-hover-lift u-panel">
                     <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-bg-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
@@ -559,51 +590,51 @@
     </section>
 
     <!-- Stats Section -->
-    <section id="stats" class="relative py-32 px-6" style="z-index: 2;">
+    <section id="stats" class="relative py-20 md:py-32 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-7xl mx-auto">
-            <div class="card-strong p-16 rounded-xl2">
+            <div class="card-strong p-6 sm:p-10 lg:p-16 rounded-xl2">
                 <div class="text-center mb-16">
                     <div class="font-mono text-accent-400 text-xs mb-4 tracking-widest">PERFORMANCE METRICS</div>
                     <h2 class="text-3xl md:text-4xl font-display font-bold">Enterprise-Grade Results</h2>
                 </div>
                 
-                <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-10 md:mb-12">
                     <div class="text-center">
-                        <div class="text-5xl md:text-6xl font-display font-bold bg-gradient-to-r from-accent-200 to-accent-400 bg-clip-text text-transparent mb-3">
+                        <div class="text-4xl sm:text-5xl md:text-6xl font-display font-bold bg-gradient-to-r from-accent-200 to-accent-400 bg-clip-text text-transparent mb-3">
                             500+
                         </div>
                         <div class="font-mono text-xs u-text-2">AI Models Deployed</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-5xl md:text-6xl font-display font-bold bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text text-transparent mb-3">
+                        <div class="text-4xl sm:text-5xl md:text-6xl font-display font-bold bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text text-transparent mb-3">
                             98.7%
                         </div>
                         <div class="font-mono text-xs u-text-2">Prediction Accuracy</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-5xl md:text-6xl font-display font-bold bg-gradient-to-r from-accent-200 to-accent-500 bg-clip-text text-transparent mb-3">
+                        <div class="text-4xl sm:text-5xl md:text-6xl font-display font-bold bg-gradient-to-r from-accent-200 to-accent-500 bg-clip-text text-transparent mb-3">
                             50M+
                         </div>
                         <div class="font-mono text-xs u-text-2">Daily Transactions</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-5xl md:text-6xl font-display font-bold bg-gradient-to-r from-accent-400 to-accent-200 bg-clip-text text-transparent mb-3">
+                        <div class="text-4xl sm:text-5xl md:text-6xl font-display font-bold bg-gradient-to-r from-accent-400 to-accent-200 bg-clip-text text-transparent mb-3">
                             99.9%
                         </div>
                         <div class="font-mono text-xs u-text-2">System Uptime</div>
                     </div>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="card p-6 rounded-lg text-center">
+                <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6">
+                    <div class="card p-4 sm:p-6 rounded-lg text-center">
                         <div class="text-2xl font-alt font-semibold mb-2">Fortune 500</div>
                         <div class="font-mono text-xs u-text-3">CLIENT PORTFOLIO</div>
                     </div>
-                    <div class="card p-6 rounded-lg text-center">
+                    <div class="card p-4 sm:p-6 rounded-lg text-center">
                         <div class="text-2xl font-alt font-semibold mb-2">ISO 27001</div>
                         <div class="font-mono text-xs u-text-3">SECURITY CERTIFIED</div>
                     </div>
-                    <div class="card p-6 rounded-lg text-center">
+                    <div class="card p-4 sm:p-6 rounded-lg text-center">
                         <div class="text-2xl font-alt font-semibold mb-2">24/7/365</div>
                         <div class="font-mono text-xs u-text-3">SUPPORT COVERAGE</div>
                     </div>
@@ -613,7 +644,7 @@
     </section>
 
     <!-- Solutions Section -->
-    <section id="solutions" class="relative py-32 px-6" style="z-index: 2;">
+    <section id="solutions" class="relative py-20 md:py-32 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20">
                 <div class="font-mono text-accent-400 text-xs mb-4 tracking-widest">INDUSTRY SOLUTIONS</div>
@@ -623,12 +654,12 @@
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid gap-6 md:grid-cols-2 md:gap-8">
                 <!-- Financial Services -->
-                <div class="card-strong p-10 hover-glow u-hover-lift u-panel group">
+                <div class="card-strong p-6 sm:p-8 lg:p-10 hover-glow u-hover-lift u-panel group">
                     <div class="flex items-start justify-between mb-6">
                         <div>
-                            <h3 class="text-3xl font-alt font-semibold mb-2">Financial Services</h3>
+                            <h3 class="text-2xl sm:text-3xl font-alt font-semibold mb-2">Financial Services</h3>
                             <div class="font-mono text-xs text-accent-400">FINTECH & BANKING</div>
                         </div>
                         <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center group-hover:scale-110 u-panel">
@@ -649,10 +680,10 @@
                 </div>
 
                 <!-- Manufacturing -->
-                <div class="card-strong p-10 hover-glow u-hover-lift u-panel group">
+                <div class="card-strong p-6 sm:p-8 lg:p-10 hover-glow u-hover-lift u-panel group">
                     <div class="flex items-start justify-between mb-6">
                         <div>
-                            <h3 class="text-3xl font-alt font-semibold mb-2">Manufacturing</h3>
+                            <h3 class="text-2xl sm:text-3xl font-alt font-semibold mb-2">Manufacturing</h3>
                             <div class="font-mono text-xs text-accent-200">INDUSTRY 4.0</div>
                         </div>
                         <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-accent-200 to-accent-400 flex items-center justify-center group-hover:scale-110 u-panel">
@@ -674,10 +705,10 @@
                 </div>
 
                 <!-- Healthcare -->
-                <div class="card-strong p-10 hover-glow u-hover-lift u-panel group">
+                <div class="card-strong p-6 sm:p-8 lg:p-10 hover-glow u-hover-lift u-panel group">
                     <div class="flex items-start justify-between mb-6">
                         <div>
-                            <h3 class="text-3xl font-alt font-semibold mb-2">Healthcare</h3>
+                            <h3 class="text-2xl sm:text-3xl font-alt font-semibold mb-2">Healthcare</h3>
                             <div class="font-mono text-xs text-accent-400">HEALTHTECH</div>
                         </div>
                         <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center group-hover:scale-110 u-panel">
@@ -698,10 +729,10 @@
                 </div>
 
                 <!-- Public Sector -->
-                <div class="card-strong p-10 hover-glow u-hover-lift u-panel group">
+                <div class="card-strong p-6 sm:p-8 lg:p-10 hover-glow u-hover-lift u-panel group">
                     <div class="flex items-start justify-between mb-6">
                         <div>
-                            <h3 class="text-3xl font-alt font-semibold mb-2">Public Sector</h3>
+                            <h3 class="text-2xl sm:text-3xl font-alt font-semibold mb-2">Public Sector</h3>
                             <div class="font-mono text-xs text-success">GOVTECH</div>
                         </div>
                         <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-success to-accent-400 flex items-center justify-center group-hover:scale-110 u-panel">
@@ -725,9 +756,9 @@
     </section>
 
     <!-- CTA Section -->
-    <section id="contact" class="relative py-32 px-6" style="z-index: 2;">
+    <section id="contact" class="relative py-20 md:py-32 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-5xl mx-auto">
-            <div class="card-strong p-16 rounded-xl2 text-center shimmer">
+            <div class="card-strong p-6 sm:p-10 lg:p-16 rounded-xl2 text-center shimmer">
                 <div class="font-mono text-accent-400 text-xs mb-6 tracking-widest">READY TO TRANSFORM?</div>
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-8">
                     Let's Build Your<br/>
@@ -740,14 +771,14 @@
                     your AI transformation roadmap.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="btn btn-primary px-10 py-5 text-base font-semibold font-alt">
+                    <button class="btn btn-primary w-full sm:w-auto px-7 sm:px-10 py-4 sm:py-5 text-sm sm:text-base font-semibold font-alt">
                         Schedule Consultation
                     </button>
-                    <button class="btn btn-secondary px-10 py-5 text-base font-semibold font-alt">
+                    <button class="btn btn-secondary w-full sm:w-auto px-7 sm:px-10 py-4 sm:py-5 text-sm sm:text-base font-semibold font-alt">
                         Download Whitepaper
                     </button>
                 </div>
-                <div class="mt-12 grid md:grid-cols-3 gap-6 text-sm">
+                <div class="mt-12 grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 text-sm">
                     <div class="flex items-center justify-center gap-2">
                         <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -772,9 +803,9 @@
     </section>
 
     <!-- Footer -->
-    <footer class="relative border-t u-border-subtle py-16 px-6" style="z-index: 2;">
+    <footer class="relative border-t u-border-subtle py-12 md:py-16 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
+            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12 mb-12">
                 <!-- Brand -->
                 <div class="md:col-span-1">
                     <div class="flex items-center gap-3 mb-4">
@@ -829,7 +860,7 @@
                     <div class="u-text-3 text-sm font-mono">
                         © 2026 archistra. all rights reserved.
                     </div>
-                    <div class="flex gap-6 text-sm font-alt">
+                    <div class="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm font-alt">
                         <a href="#" class="u-text-2 hover:text-accent-400 u-calm">Privacy Policy</a>
                         <a href="#" class="u-text-2 hover:text-accent-400 u-calm">Terms of Service</a>
                         <a href="#" class="u-text-2 hover:text-accent-400 u-calm">Security</a>
@@ -941,12 +972,27 @@
             canvas.height = window.innerHeight;
         });
 
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuToggle.setAttribute('aria-expanded', String(!isExpanded));
+            });
+        }
+
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+                    }
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
