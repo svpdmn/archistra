@@ -372,15 +372,19 @@
     <!-- Navigation -->
     <nav class="fixed w-full top-0 z-50" style="background: rgba(11, 18, 32, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
-            <div class="flex items-center justify-between gap-3">
-                <!-- Logo -->
-                <div class="flex items-center gap-2 sm:gap-3">
-                    <img src="assets/archistra-logo.svg" alt="Archistra logo" class="w-9 h-9 sm:w-10 sm:h-10" />
+            <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+                <!-- Brand Name (left) -->
+                <div class="flex items-center">
                     <span class="text-xl sm:text-2xl font-semibold font-display logo-glow">archistra</span>
                 </div>
 
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center gap-8 font-alt text-xs tracking-wider">
+                <!-- Centered Logo -->
+                <div class="flex justify-center">
+                    <img src="assets/archistra-logo.svg" alt="Archistra logo" class="w-9 h-9 sm:w-10 sm:h-10" />
+                </div>
+
+                <!-- Desktop Navigation (right) -->
+                <div class="hidden md:flex items-center justify-end gap-8 font-alt text-xs tracking-wider">
                     <a href="#services" class="u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
                     <a href="#contact" class="u-text-2 hover:text-accent-400 u-calm">READY TO TRANSFORM?</a>
                 </div>
@@ -612,13 +616,11 @@
     <!-- Footer -->
     <footer class="relative border-t u-border-subtle py-12 md:py-16 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-7xl mx-auto">
-            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12 mb-12">
+            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12 mb-12 text-center lg:text-left">
                 <!-- Brand -->
-                <div class="md:col-span-1">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center">
-                            <span class="text-bg-0 font-semibold text-xl">A</span>
-                        </div>
+                <div class="md:col-span-1 flex flex-col items-center lg:items-start">
+                    <div class="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                        <img src="assets/archistra-logo.svg" alt="Archistra logo" class="w-10 h-10" />
                         <span class="text-2xl font-semibold font-display">archistra</span>
                     </div>
                     <p class="u-text-2 text-sm mb-4 font-alt">Fragments to Intelligence</p>
@@ -628,7 +630,7 @@
                 </div>
 
                 <!-- Company -->
-                <div>
+                <div class="text-center lg:text-right">
                     <h4 class="font-bold mb-4 font-alt text-xs text-accent-400 tracking-wider">COMPANY</h4>
                     <ul class="space-y-2 text-sm font-alt">
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">About Us</a></li>
@@ -639,7 +641,7 @@
                 </div>
 
                 <!-- Resources -->
-                <div>
+                <div class="text-center lg:text-right">
                     <h4 class="font-bold mb-4 font-alt text-xs text-accent-400 tracking-wider">RESOURCES</h4>
                     <ul class="space-y-2 text-sm font-alt">
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Documentation</a></li>
