@@ -1,0 +1,11 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="archistraLogoGradient" x1="18" y1="16" x2="102" y2="104" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BFDBFE"/>
+      <stop offset="0.45" stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="104" height="104" rx="28" fill="url(#archistraLogoGradient)"/>
+  <path d="M60.0825 27L28 93H41.52L49.425 76.4588H70.74L78.685 93H92.205L60.0825 27ZM54.87 65.5788L60.0825 54.6375L65.295 65.5788H54.87Z" fill="#0B1220"/>
+</svg>
