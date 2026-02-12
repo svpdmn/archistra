@@ -109,11 +109,7 @@
         }
 
         @layer utilities {
-            .u-border-subtle {
-                border-top-width: 0.25px !important;
-                border-top-style: solid !important;
-                border-top-color: rgba(128, 128, 128, 0.6) !important;
-            }
+            .u-border-subtle { border-color: rgba(128, 128, 128, 0.45); }
             .u-divider { border-color: rgba(var(--border-subtle), 0.06); }
             .u-text-1 { color: rgba(var(--text-1), 0.92); }
             .u-text-2 { color: rgba(var(--text-2), 0.72); }
@@ -412,17 +408,16 @@
                 </span>
             </h1>
             <p class="lead max-w-3xl mx-auto mb-12 fade-in-up delay-200">
-                An enterprise-grade Business Strategy & Architecture Intelligence platform, powered by AI, 
-                that accelerates the integration of strategy across capabilities, architecture, technology, people, and operating models—driving faster, reliable, and durable enterprise outcomes.
-                Transform your enterprise architecture with AI-driven intelligence that scales. 
-                From fragmented data to unified insights.
+                <!-- An enterprise-grade Business Strategy & Architecture Intelligence platform, powered by AI, 
+                that accelerates the integration of strategy, capabilities, architecture, technology, people, and operating models - driving faster, reliable, and durable outcomes. Transform your enterprise with AI-driven intelligence that scales, turning fragmented data into powerful insights. -->
+                As a strategy & architecture intelligence platform, we unify strategy, capabilities, architecture, technology, people, and operating models into a single system of intelligence - built on first principles and powered by grounded data - to turn fragmented information into actionable insight. From intent to execution, we accelerate transformation with dynamic adaptability, operational discipline, architectural integrity, and risk-aware governance for durable, capital-efficient outcomes, enabling faster, more resilient, and measurable results.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-300">
-                <button class="btn btn-primary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold font-alt">
-                    Schedule Consultation
+                <button class="btn btn-secondary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold font-alt">
+                    Read the Whitepaper
                 </button>
                 <button class="btn btn-secondary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold font-alt">
-                    View Case Studies
+                    Schedule a Consultation
                 </button>
             </div>
             
@@ -591,10 +586,10 @@
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <button class="btn btn-primary w-full sm:w-auto px-7 sm:px-10 py-4 sm:py-5 text-sm sm:text-base font-semibold font-alt">
-                        Schedule Consultation
+                        Schedule a Consultation
                     </button>
                 </div>
-                <div class="mt-12 grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 text-sm">
+                <div class="mt-12 grid gap-4 sm:grid-cols-2 md:gap-6 text-sm max-w-md mx-auto">
                     <div class="flex items-center justify-center gap-2">
                         <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -607,12 +602,6 @@
                         </svg>
                         <span class="font-mono u-text-2 text-xs">FREE ASSESSMENT</span>
                     </div>
-                    <div class="flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="font-mono u-text-2 text-xs">30-DAY POC</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -621,25 +610,23 @@
     <!-- Footer -->
     <footer class="relative border-t u-border-subtle py-12 md:py-16 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-7xl mx-auto">
-            <div class="grid gap-8 sm:grid-cols-2 mb-12 max-w-4xl mx-auto">
+            <div class="grid gap-8 sm:grid-cols-2 mb-12 max-w-4xl mx-auto items-center justify-items-center">
                 <!-- Company -->
-                <div class="text-left">
-                    <h4 class="font-medium mb-4 font-alt text-[11px] u-text-3 tracking-[0.18em]">COMPANY</h4>
+                <div class="w-full max-w-xs flex flex-col items-center justify-center text-center">
+                    <h4 class="font-bold mb-4 font-alt text-[11px] u-text-3 tracking-[0.18em]">COMPANY</h4>
                     <ul class="space-y-2 text-xs font-alt">
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">About Us</a></li>
-                        <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Leadership</a></li>
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Careers</a></li>
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Partners</a></li>
                     </ul>
                 </div>
 
                 <!-- Resources -->
-                <div class="text-left">
-                    <h4 class="font-medium mb-4 font-alt text-[11px] u-text-3 tracking-[0.18em]">RESOURCES</h4>
+                <div class="w-full max-w-xs flex flex-col items-center justify-center text-center">
+                    <h4 class="font-bold mb-4 font-alt text-[11px] u-text-3 tracking-[0.18em]">RESOURCES</h4>
                     <ul class="space-y-2 text-xs font-alt">
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Documentation</a></li>
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Case Studies</a></li>
-                        <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Whitepapers</a></li>
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Support</a></li>
                     </ul>
                 </div>
@@ -686,10 +673,10 @@
                             <img src="assets/archistra-logo.svg" alt="Archistra logo" class="w-10 h-10" />
                             <span class="text-2xl font-semibold font-display">archistra</span>
                         </div>
-                        <p class="u-text-3 text-xs">[built on architecture first principles]</p>
+                        <p class="u-text-3 text-xs">[built on first principles]</p>
                     </div>
 
-                    <div class="u-text-3 text-xs font-alt text-center opacity-70">
+                    <div class="u-text-3 text-xs font-alt text-center opacity-50">
                         © 2026 archistra. all rights reserved.
                     </div>
                 </div>
