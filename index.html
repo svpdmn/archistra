@@ -296,6 +296,10 @@
             animation: pulse 3s ease-in-out infinite;
         }
 
+        .cta-static-bg {
+            background: linear-gradient(145deg, rgba(255,255,255,0.11), rgba(255,255,255,0.07));
+        }
+
         /* Particles */
         #particles {
             position: fixed;
@@ -516,7 +520,7 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Stats Section (temporarily hidden)
     <section id="stats" class="relative py-20 md:py-32 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-7xl mx-auto">
             <div class="card-strong p-6 sm:p-10 lg:p-16 rounded-xl2">
@@ -569,11 +573,12 @@
             </div>
         </div>
     </section>
+    -->
 
     <!-- CTA Section -->
     <section id="contact" class="relative py-20 md:py-32 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-5xl mx-auto">
-            <div class="card-strong p-6 sm:p-10 lg:p-16 rounded-xl2 text-center shimmer">
+            <div class="card-strong cta-static-bg p-6 sm:p-10 lg:p-16 rounded-xl2 text-center">
                 <div class="font-mono text-accent-400 text-xs mb-6 tracking-widest">READY TO TRANSFORM?</div>
                 <h2 class="text-4xl md:text-5xl font-display font-bold mb-8">
                     Let's Build Your<br/>
@@ -616,19 +621,7 @@
     <!-- Footer -->
     <footer class="relative border-t u-border-subtle py-12 md:py-16 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-7xl mx-auto">
-            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12 mb-12 text-center lg:text-left">
-                <!-- Brand -->
-                <div class="md:col-span-1 flex flex-col items-center lg:items-start">
-                    <div class="flex items-center justify-center lg:justify-start gap-3 mb-4">
-                        <img src="assets/archistra-logo.svg" alt="Archistra logo" class="w-10 h-10" />
-                        <span class="text-2xl font-semibold font-display">archistra</span>
-                    </div>
-                    <p class="u-text-2 text-sm mb-4 font-alt">Fragments to Intelligence</p>
-                    <p class="u-text-3 text-xs">
-                        built on proven architecture principles.
-                    </p>
-                </div>
-
+            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 lg:gap-12 mb-12 text-center lg:text-right lg:max-w-3xl lg:ml-auto">
                 <!-- Company -->
                 <div class="text-center lg:text-right">
                     <h4 class="font-bold mb-4 font-alt text-xs text-accent-400 tracking-wider">COMPANY</h4>
@@ -654,15 +647,15 @@
 
             <!-- Bottom Bar -->
             <div class="border-t u-border-subtle pt-8">
-                <div class="flex flex-col gap-4">
-                    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                        <nav aria-label="Legal links" class="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 text-xs font-alt">
+                <div class="flex flex-col gap-6">
+                    <div class="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+                        <nav aria-label="Legal links" class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-alt lg:col-start-2">
                             <a href="#" class="u-text-2 hover:text-accent-400 u-calm">Privacy</a>
                             <a href="#" class="u-text-2 hover:text-accent-400 u-calm">Terms &amp; Conditions</a>
                             <a href="#" class="u-text-2 hover:text-accent-400 u-calm">Disclaimer</a>
                         </nav>
 
-                        <nav aria-label="Social media links" class="flex items-center justify-center sm:justify-end gap-4">
+                        <nav aria-label="Social media links" class="flex items-center justify-center lg:justify-end gap-4 lg:col-start-3">
                             <a href="https://discord.com" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="u-text-2 hover:text-accent-400 u-calm" title="Discord">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.078.037c-.212.375-.447.864-.612 1.249a18.27 18.27 0 0 0-5.487 0 12.587 12.587 0 0 0-.621-1.249.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.67 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.873-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.073.073 0 0 1 .078.01c.12.1.246.197.373.291a.077.077 0 0 1-.006.128 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.04.107c.36.698.771 1.363 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .031-.056c.5-5.177-.838-9.674-3.548-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.418 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.333-.956 2.418-2.157 2.418Zm7.974 0c-1.183 0-2.157-1.085-2.157-2.418 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.333-.947 2.418-2.157 2.418Z"/>
@@ -684,6 +677,15 @@
                                 </svg>
                             </a>
                         </nav>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center">
+                        <div class="flex items-center justify-center gap-3 mb-2">
+                            <img src="assets/archistra-logo.svg" alt="Archistra logo" class="w-10 h-10" />
+                            <span class="text-2xl font-semibold font-display">archistra</span>
+                        </div>
+                        <p class="u-text-2 text-sm mb-1 font-alt">Fragments to Intelligence</p>
+                        <p class="u-text-3 text-xs">built on proven architecture principles.</p>
                     </div>
 
                     <div class="u-text-3 text-xs font-alt text-center opacity-70">
