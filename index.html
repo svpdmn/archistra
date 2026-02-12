@@ -109,7 +109,11 @@
         }
 
         @layer utilities {
-            .u-border-subtle { border-color: rgba(var(--border-subtle), 0.08); }
+            .u-border-subtle {
+                border-top-width: 0.25px !important;
+                border-top-style: solid !important;
+                border-top-color: rgba(128, 128, 128, 0.6) !important;
+            }
             .u-divider { border-color: rgba(var(--border-subtle), 0.06); }
             .u-text-1 { color: rgba(var(--text-1), 0.92); }
             .u-text-2 { color: rgba(var(--text-2), 0.72); }
@@ -617,11 +621,11 @@
     <!-- Footer -->
     <footer class="relative border-t u-border-subtle py-12 md:py-16 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-7xl mx-auto">
-            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 lg:gap-12 mb-12 text-center lg:text-right lg:max-w-3xl lg:ml-auto">
+            <div class="grid gap-8 sm:grid-cols-2 mb-12 max-w-4xl mx-auto">
                 <!-- Company -->
-                <div class="text-center lg:text-right">
-                    <h4 class="font-bold mb-4 font-alt text-xs text-accent-400 tracking-wider">COMPANY</h4>
-                    <ul class="space-y-2 text-sm font-alt">
+                <div class="text-left">
+                    <h4 class="font-medium mb-4 font-alt text-[11px] u-text-3 tracking-[0.18em]">COMPANY</h4>
+                    <ul class="space-y-2 text-xs font-alt">
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">About Us</a></li>
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Leadership</a></li>
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Careers</a></li>
@@ -630,9 +634,9 @@
                 </div>
 
                 <!-- Resources -->
-                <div class="text-center lg:text-right">
-                    <h4 class="font-bold mb-4 font-alt text-xs text-accent-400 tracking-wider">RESOURCES</h4>
-                    <ul class="space-y-2 text-sm font-alt">
+                <div class="text-left">
+                    <h4 class="font-medium mb-4 font-alt text-[11px] u-text-3 tracking-[0.18em]">RESOURCES</h4>
+                    <ul class="space-y-2 text-xs font-alt">
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Documentation</a></li>
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Case Studies</a></li>
                         <li><a href="#" class="u-text-2 hover:text-accent-400 u-calm">Whitepapers</a></li>
