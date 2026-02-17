@@ -383,10 +383,25 @@
                     <img src="assets/archistra-logo.svg" alt="Archistra logo" class="w-9 h-9 sm:w-10 sm:h-10" />
                 </div>
 
-                <!-- Desktop Navigation (right) -->
-                <div class="hidden md:flex items-center justify-end gap-8 font-alt text-xs tracking-wider">
-                    <a href="#services" class="u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
-                    <a href="#contact" class="u-text-2 hover:text-accent-400 u-calm">READY TO TRANSFORM?</a>
+                <!-- Navigation (right) -->
+                <div class="flex items-center justify-end">
+                    <button
+                        id="mobile-menu-toggle"
+                        type="button"
+                        class="md:hidden inline-flex items-center justify-center rounded-md p-2 text-white/80 border border-white/20 bg-white/5 hover:bg-white/10 u-calm"
+                        aria-controls="mobile-menu"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation menu"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+
+                    <div class="hidden md:flex items-center justify-end gap-8 font-alt text-xs tracking-wider">
+                        <a href="#services" class="u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
+                        <a href="#contact" class="u-text-2 hover:text-accent-400 u-calm">READY TO TRANSFORM?</a>
+                    </div>
                 </div>
             </div>
 
@@ -777,6 +792,13 @@
                 const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
                 mobileMenu.classList.toggle('hidden');
                 mobileMenuToggle.setAttribute('aria-expanded', String(!isExpanded));
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
             });
         }
 
