@@ -5,365 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>archistra - Fragments to Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scripts/tailwind-theme.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Tektur:wght@400;500;600;700;800;900&family=Geo:wght@400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ["Geo", "sans-serif"],
-                        display: ["Tektur", "sans-serif"],
-                        mono: ["Space Mono", "monospace"],
-                        alt: ["Play", "sans-serif"],
-                    },
-                    colors: {
-                        bg: {
-                            0: "#0B1220",
-                            1: "#0F1B2D",
-                        },
-                        surface: {
-                            0: "#121F33",
-                            1: "#162844",
-                        },
-                        accent: {
-                            200: "#BFDBFE",
-                            400: "#60A5FA",
-                            500: "#3B82F6",
-                        },
-                        success: "#22C55E",
-                        warning: "#F59E0B",
-                        danger: "#EF4444",
-                        ink: {
-                            1: "rgb(255 255 255)",
-                        },
-                    },
-                    borderRadius: {
-                        sm: "10px",
-                        md: "14px",
-                        lg: "18px",
-                        xl2: "22px",
-                    },
-                    boxShadow: {
-                        e1: "0 8px 24px rgba(0,0,0,0.35)",
-                        e2: "0 16px 48px rgba(0,0,0,0.45)",
-                        e3: "0 24px 80px rgba(0,0,0,0.55)",
-                        highlight: "inset 0 1px 0 rgba(255,255,255,0.08)",
-                    },
-                    backdropBlur: {
-                        glass: "12px",
-                        "glass-strong": "20px",
-                    },
-                    transitionTimingFunction: {
-                        calm: "cubic-bezier(0.2, 0.8, 0.2, 1)",
-                    },
-                    transitionDuration: {
-                        calm: "180ms",
-                        panel: "260ms",
-                    },
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        @layer base {
-            :root {
-                --text-1: 255 255 255;
-                --text-2: 255 255 255;
-                --text-3: 255 255 255;
-                --border-subtle: 255 255 255;
-                --glass-fill: 255 255 255;
-                --glass-strong-fill: 255 255 255;
-            }
-
-            html, body { 
-                height: 100%; 
-                margin: 0;
-                padding: 0;
-            }
-            
-            body {
-                font-family: "Geo", sans-serif;
-                color: rgba(255, 255, 255, 0.90);
-                background-color: #000000;
-                background-image: linear-gradient(180deg, #000000, #000000);
-                background-attachment: fixed;
-            }
-
-            ::selection {
-                background: rgba(59,130,246,0.25);
-            }
-
-            :focus-visible {
-                outline: 2px solid rgba(96,165,250,0.55);
-                outline-offset: 3px;
-                border-radius: 10px;
-            }
-
-            h1, h2, h3, h4, h5, h6 {
-                font-family: "Tektur", sans-serif;
-            }
-        }
-
-        @layer utilities {
-            .u-border-subtle { border-color: rgba(128, 128, 128, 0.45); }
-            .u-divider { border-color: rgba(var(--border-subtle), 0.06); }
-            .u-text-1 { color: rgba(var(--text-1), 0.92); }
-            .u-text-2 { color: rgba(var(--text-2), 0.72); }
-            .u-text-3 { color: rgba(var(--text-3), 0.52); }
-
-            .u-glass {
-                background: rgba(var(--glass-fill), 0.06);
-                border: 1px solid rgba(var(--border-subtle), 0.10);
-                -webkit-backdrop-filter: blur(12px) saturate(1.05);
-                backdrop-filter: blur(12px) saturate(1.05);
-                box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-                position: relative;
-            }
-            .u-glass::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                border-radius: inherit;
-                pointer-events: none;
-                box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-            }
-
-            .u-glass-strong {
-                background: rgba(var(--glass-strong-fill), 0.10);
-                border: 1px solid rgba(var(--border-subtle), 0.14);
-                -webkit-backdrop-filter: blur(20px) saturate(1.10);
-                backdrop-filter: blur(20px) saturate(1.10);
-                box-shadow: 0 24px 80px rgba(0,0,0,0.55);
-                position: relative;
-            }
-            .u-glass-strong::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                border-radius: inherit;
-                pointer-events: none;
-                box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
-            }
-
-            .u-matte {
-                background: rgba(18,31,51,0.65);
-                border: 1px solid rgba(255,255,255,0.08);
-                box-shadow: 0 8px 24px rgba(0,0,0,0.30);
-            }
-
-            .u-calm { transition: all 180ms cubic-bezier(0.2,0.8,0.2,1); }
-            .u-panel { transition: all 260ms cubic-bezier(0.2,0.8,0.2,1); }
-            .u-hover-lift:hover { transform: translateY(-1px); }
-
-            .u-chip {
-                background: rgba(255,255,255,0.04);
-                border: 1px solid rgba(255,255,255,0.08);
-            }
-        }
-
-        @layer components {
-            .card { @apply rounded-md u-glass; }
-            .card-strong { @apply rounded-lg u-glass-strong; }
-            .card-matte { @apply rounded-md u-matte; }
-
-            .h1 {
-                font-size: clamp(40px, 5vw, 52px);
-                line-height: 1.05;
-                font-weight: 600;
-                letter-spacing: -0.02em;
-            }
-            .h2 {
-                font-size: clamp(24px, 3vw, 32px);
-                font-weight: 600;
-                letter-spacing: -0.01em;
-            }
-            .lead {
-                font-size: clamp(16px, 2vw, 18px);
-                line-height: 1.6;
-                color: rgba(255,255,255,0.72);
-            }
-
-            .btn {
-                @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold u-calm;
-                border: 1px solid rgba(255,255,255,0.38);
-                color: rgba(236, 241, 248, 0.96);
-                background-image:
-                    linear-gradient(120deg, rgba(255,255,255,0.35) 0%, rgba(221,229,238,0.2) 22%, rgba(164,174,186,0.3) 48%, rgba(246,249,252,0.26) 70%, rgba(137,146,158,0.34) 100%),
-                    radial-gradient(circle at top, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0) 56%);
-                box-shadow:
-                    inset 0 1px 0 rgba(255,255,255,0.5),
-                    inset 0 -16px 24px rgba(35,42,54,0.34),
-                    0 8px 16px rgba(0,0,0,0.3);
-                text-shadow: 0 1px 1px rgba(8, 11, 18, 0.35);
-            }
-            .btn-primary {
-                border-color: rgba(194, 206, 219, 0.62);
-            }
-            .btn-primary:hover { filter: brightness(1.05); }
-            .btn-primary:active { filter: brightness(0.98); }
-
-            .btn-secondary {
-                border-color: rgba(180, 191, 206, 0.58);
-            }
-            .btn-secondary:hover { background: rgba(255,255,255,0.06); }
-
-            .btn-ghost {
-                border-color: rgba(176, 188, 202, 0.52);
-                color: rgba(233, 239, 247, 0.9);
-            }
-            .btn-ghost:hover { 
-                background: rgba(255,255,255,0.03); 
-                color: rgba(255,255,255,0.92); 
-            }
-
-            a {
-                color: inherit;
-                text-decoration: none;
-                transition: color 180ms cubic-bezier(0.2,0.8,0.2,1);
-            }
-
-            .badge {
-                @apply inline-flex items-center gap-2 rounded-sm px-2.5 py-1 text-xs font-medium;
-                border: 1px solid rgba(255,255,255,0.10);
-                background: rgba(255,255,255,0.04);
-                color: rgba(255,255,255,0.72);
-            }
-            
-            .navbar {
-                @apply card rounded-lg px-4 py-3 flex items-center justify-between;
-            }
-        }
-
-        /* Custom animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-        @keyframes pulse {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.2); }
-        }
-
-        .fade-in { animation: fadeIn 1s ease-out forwards; opacity: 0; }
-        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
-        
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-500 { animation-delay: 0.5s; }
-        .delay-600 { animation-delay: 0.6s; }
-        .delay-700 { animation-delay: 0.7s; }
-
-        .shimmer {
-            position: relative;
-            overflow: hidden;
-        }
-        .shimmer::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        .logo-glow {
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        .cta-static-bg {
-            background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04));
-        }
-
-        /* Particles */
-        #particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Grid pattern overlay */
-        .grid-pattern {
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        /* Hover glow effect */
-        .hover-glow {
-            position: relative;
-            transition: all 260ms cubic-bezier(0.2,0.8,0.2,1);
-        }
-        .hover-glow::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: inherit;
-            background: linear-gradient(135deg, rgba(96,165,250,0.15), rgba(59,130,246,0.15));
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-            filter: blur(20px);
-        }
-        .hover-glow:hover::after {
-            opacity: 1;
-        }
-        .hover-glow:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Responsive text sizing */
-
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.25rem !important; }
-            .section-title { font-size: 2rem !important; }
-        }
-
-        @media (max-width: 640px) {
-            body { background-attachment: scroll; }
-            .lead { font-size: 15px; line-height: 1.55; }
-            .badge { font-size: 10px; }
-            .hover-glow:hover { transform: none; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles/theme.css">
 </head>
 <body class="grid-pattern">
     <!-- Particles Canvas -->
@@ -388,7 +34,7 @@
                     <button
                         id="mobile-menu-toggle"
                         type="button"
-                        class="md:hidden inline-flex items-center justify-center rounded-md p-2 text-white/80 border border-white/20 bg-white/5 hover:bg-white/10 u-calm"
+                        class="md:hidden inline-flex items-center justify-center rounded-none p-2 text-white/80 border border-white/20 bg-white/5 hover:bg-white/10 u-calm"
                         aria-controls="mobile-menu"
                         aria-expanded="false"
                         aria-label="Toggle navigation menu"
@@ -479,13 +125,12 @@
                     </div>
                     <h3 class="text-2xl font-alt font-semibold mb-4">Business Capabilities</h3>
                     <p class="u-text-2 mb-6 leading-relaxed max-w-sm mx-auto">
-                        AI-powered data integration and orchestration across distributed enterprise systems. 
-                        Transform siloed data into unified, actionable intelligence.
+                        Enterprise abilities that define what an organization must do to execute its strategy and deliver value, independent of structure, processes, or technology.
                     </p>
                     <div class="flex flex-wrap justify-center gap-2">
-                        <span class="badge font-mono text-xs tracking-wide">DATA MESH</span>
-                        <span class="badge font-mono text-xs tracking-wide">ML OPS</span>
-                        <span class="badge font-mono text-xs tracking-wide">GOVERNANCE</span>
+                        <span class="badge font-mono tracking-wide">DATA MESH</span>
+                        <span class="badge font-mono tracking-wide">ML OPS</span>
+                        <span class="badge font-mono tracking-wide">GOVERNANCE</span>
                     </div>
                 </div>
 
@@ -498,13 +143,12 @@
                     </div>
                     <h3 class="text-2xl font-alt font-semibold mb-4">Enterprise Architecture</h3>
                     <p class="u-text-2 mb-6 leading-relaxed max-w-sm mx-auto">
-                        Deploy intelligent automation that learns and adapts. Reduce operational complexity 
-                        while maintaining enterprise-grade security and compliance.
+                        Defines how capabilities, information, technology, and operating models are structured, related and governed to enable execution of a strategy.
                     </p>
                     <div class="flex flex-wrap justify-center gap-2">
-                        <span class="badge font-mono text-xs tracking-wide">RPA+AI</span>
-                        <span class="badge font-mono text-xs tracking-wide">NLP</span>
-                        <span class="badge font-mono text-xs tracking-wide">DECISION AI</span>
+                        <span class="badge font-mono tracking-wide">RPA+AI</span>
+                        <span class="badge font-mono tracking-wide">NLP</span>
+                        <span class="badge font-mono tracking-wide">DECISION AI</span>
                     </div>
                 </div>
 
@@ -515,15 +159,14 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-alt font-semibold mb-4">Technical Landscape</h3>
+                    <h3 class="text-2xl font-alt font-semibold mb-4">Technical Standards</h3>
                     <p class="u-text-2 mb-6 leading-relaxed max-w-sm mx-auto">
-                        Real-time analytics and forecasting powered by advanced ML models. 
-                        Make data-driven decisions with confidence at enterprise scale.
+                        The specifications and guardrails that prescribe approved technologies, patterns and design constraints across the technology landscape.
                     </p>
                     <div class="flex flex-wrap justify-center gap-2">
-                        <span class="badge font-mono text-xs tracking-wide">FORECASTING</span>
-                        <span class="badge font-mono text-xs tracking-wide">BI+AI</span>
-                        <span class="badge font-mono text-xs tracking-wide">REAL-TIME</span>
+                        <span class="badge font-mono tracking-wide">FORECASTING</span>
+                        <span class="badge font-mono tracking-wide">BI+AI</span>
+                        <span class="badge font-mono tracking-wide">REAL-TIME</span>
                     </div>
                 </div>
             </div>
@@ -699,126 +342,6 @@
         </div>
     </footer>
 
-    <!-- Particles Animation Script -->
-    <script>
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particles = [];
-        const particleCount = 60;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.5 + 0.5;
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.4 - 0.2;
-                this.opacity = Math.random() * 0.3 + 0.2;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                else if (this.x < 0) this.x = canvas.width;
-
-                if (this.y > canvas.height) this.y = 0;
-                else if (this.y < 0) this.y = canvas.height;
-            }
-
-            draw() {
-                ctx.fillStyle = `rgba(96, 165, 250, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function connectParticles() {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 100) {
-                        ctx.strokeStyle = `rgba(96, 165, 250, ${0.1 * (1 - distance / 100)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-
-            connectParticles();
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (mobileMenuToggle && mobileMenu) {
-            mobileMenuToggle.addEventListener('click', () => {
-                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
-                mobileMenu.classList.toggle('hidden');
-                mobileMenuToggle.setAttribute('aria-expanded', String(!isExpanded));
-            });
-
-            window.addEventListener('resize', () => {
-                if (window.innerWidth >= 768) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenuToggle?.setAttribute('aria-expanded', 'false');
-                    }
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="scripts/app.js"></script>
 </body>
 </html>
