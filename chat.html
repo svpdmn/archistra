@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>archistra chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scripts/tailwind-theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Tektur:wght@400;500;600;700;800;900&family=Geo:wght@400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/theme.css">
+    <style>
+        body.chat-page {
+            background-color: #f3f4f6;
+            background-image: linear-gradient(180deg, #f3f4f6, #e9edf3);
+            color: rgba(15, 23, 42, 0.92);
+        }
+    </style>
+</head>
+<body class="chat-page min-h-screen">
+    <canvas id="particles"></canvas>
+
+    <main class="relative z-10 min-h-screen px-4 py-8 sm:px-6">
+        <div class="mx-auto flex w-full max-w-5xl flex-col gap-6">
+            <header class="card-strong rounded-xl2 p-5 sm:p-6">
+                <div class="flex items-center justify-between gap-4">
+                    <div>
+                        <p class="font-mono text-accent-400 text-xs tracking-widest">CHAT UI</p>
+                        <h1 class="mt-2 text-3xl font-display font-bold sm:text-4xl">archistra</h1>
+                        <p class="lead mt-3">Simple chat interface ready for OpenAI API backend integration.</p>
+                    </div>
+                    <a href="index.html" class="btn btn-secondary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold font-alt">Back to Home</a>
+                </div>
+            </header>
+
+            <section class="card-strong rounded-xl2 flex min-h-[70vh] flex-col overflow-hidden">
+                <div class="border-b u-border-subtle px-4 py-3 sm:px-6">
+                    <p class="font-mono text-xs u-text-2">Session: prototype-chat-001</p>
+                </div>
+
+                <div id="messages" class="flex-1 space-y-4 overflow-y-auto px-4 py-5 sm:px-6">
+                    <article class="max-w-3xl">
+                        <p class="mb-2 font-mono text-[11px] tracking-wider text-accent-400">ASSISTANT</p>
+                        <div class="card rounded-md p-4">
+                            <p class="u-text-1">Hello. I can help draft architecture notes, summarize requirements, and generate implementation plans.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <form id="composer" class="border-t u-border-subtle bg-white/60 p-4 sm:p-6">
+                    <label for="prompt" class="mb-2 block font-mono text-xs tracking-wider u-text-3">MESSAGE</label>
+                    <div class="flex flex-col gap-3 sm:flex-row">
+                        <textarea id="prompt" name="prompt" rows="2" class="card w-full resize-none rounded-none bg-transparent px-4 py-3 text-sm text-white placeholder:text-white/50 focus:outline-none" placeholder="Type your message..." required></textarea>
+                        <button type="submit" class="btn btn-primary w-full sm:w-auto px-7 sm:px-10 py-4 sm:py-5 text-sm sm:text-base font-semibold font-alt">Send</button>
+                    </div>
+                    <p class="mt-2 font-mono text-[11px] u-text-3">Backend target: OpenAI API (to be connected server-side).</p>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 40;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.2 + 0.4;
+                this.speedX = Math.random() * 0.3 - 0.15;
+                this.speedY = Math.random() * 0.3 - 0.15;
+                this.opacity = Math.random() * 0.25 + 0.15;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                else if (this.x < 0) this.x = canvas.width;
+
+                if (this.y > canvas.height) this.y = 0;
+                else if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(96, 165, 250, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const particle of particles) {
+                particle.update();
+                particle.draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const composer = document.getElementById('composer');
+        const prompt = document.getElementById('prompt');
+        const messages = document.getElementById('messages');
+
+        composer.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const text = prompt.value.trim();
+            if (!text) return;
+
+            const userBlock = document.createElement('article');
+            userBlock.className = 'ml-auto max-w-3xl';
+            userBlock.innerHTML = `
+                <p class="mb-2 text-right font-mono text-[11px] tracking-wider text-accent-200">YOU</p>
+                <div class="card rounded-md p-4">
+                    <p class="u-text-1"></p>
+                </div>
+            `;
+            userBlock.querySelector('p.u-text-1').textContent = text;
+            messages.appendChild(userBlock);
+
+            const assistantBlock = document.createElement('article');
+            assistantBlock.className = 'max-w-3xl';
+            assistantBlock.innerHTML = `
+                <p class="mb-2 font-mono text-[11px] tracking-wider text-accent-400">ASSISTANT</p>
+                <div class="card rounded-md p-4">
+                    <p class="u-text-1">[Placeholder] Wire this action to your backend endpoint that calls the OpenAI API.</p>
+                </div>
+            `;
+            messages.appendChild(assistantBlock);
+
+            prompt.value = '';
+            messages.scrollTop = messages.scrollHeight;
+        });
+
+        initParticles();
+        animateParticles();
+    </script>
+</body>
+</html>
