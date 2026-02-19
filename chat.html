@@ -10,114 +10,61 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Tektur:wght@400;500;600;700;800;900&family=Geo:wght@400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/theme.css">
-    <style>
-        body.chat-page {
-            background-color: #f3f4f6;
-            background-image: linear-gradient(180deg, #f3f4f6, #e9edf3);
-            color: rgba(15, 23, 42, 0.92);
-        }
-    </style>
 </head>
-<body class="chat-page min-h-screen">
-    <canvas id="particles"></canvas>
+<body class="grid-pattern">
+    <div id="site-nav" data-page="chat"></div>
 
-    <main class="relative z-10 min-h-screen px-4 py-8 sm:px-6">
-        <div class="mx-auto flex w-full max-w-5xl flex-col gap-6">
-            <header class="card-strong rounded-xl2 p-5 sm:p-6">
-                <div class="flex items-center justify-between gap-4">
-                    <div>
-                        <p class="font-mono text-accent-400 text-xs tracking-widest">CHAT UI</p>
-                        <h1 class="mt-2 text-3xl font-display font-bold sm:text-4xl">archistra</h1>
-                        <p class="lead mt-3">Simple chat interface ready for OpenAI API backend integration.</p>
-                    </div>
-                    <a href="index.html" class="btn btn-secondary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold font-alt">Back to Home</a>
-                </div>
-            </header>
-
-            <section class="card-strong rounded-xl2 flex min-h-[70vh] flex-col overflow-hidden">
-                <div class="border-b u-border-subtle px-4 py-3 sm:px-6">
-                    <p class="font-mono text-xs u-text-2">Session: prototype-chat-001</p>
-                </div>
+    <main class="relative z-10 min-h-screen px-4 pt-24 pb-8 sm:px-6 sm:pt-28 u-font-ui">
+        <section class="mx-auto flex min-h-[72vh] w-full max-w-5xl flex-col overflow-hidden card-strong rounded-xl2" style="border: 1px solid rgba(255, 255, 255, 0.14);">
+            <div class="border-b u-border-subtle px-4 py-5 sm:px-6 sm:py-6 text-center">
+                <div class="u-font-code text-accent-400 text-xs tracking-widest mb-2">CHAT INTERFACE</div>
+                <h2 class="text-2xl sm:text-3xl font-display font-bold">Conversation Workspace</h2>
+            </div>
+            <div class="border-b u-border-subtle px-4 py-3 sm:px-6">
+                <span class="badge badge-chat u-font-code tracking-wide">Session: prototype-chat-001</span>
+            </div>
 
                 <div id="messages" class="flex-1 space-y-4 overflow-y-auto px-4 py-5 sm:px-6">
                     <article class="max-w-3xl">
-                        <p class="mb-2 font-mono text-[11px] tracking-wider text-accent-400">ASSISTANT</p>
-                        <div class="card rounded-md p-4">
-                            <p class="u-text-1">Hello. I can help draft architecture notes, summarize requirements, and generate implementation plans.</p>
+                        <p class="mb-2 u-font-code text-[11px] tracking-wider text-accent-400">ASSISTANT</p>
+                        <div class="card rounded-md p-4" style="border: 0.5px solid rgba(255, 255, 255, 0.10);">
+                            <p class="u-text-1 u-font-code text-[11px]">Hello. I can help draft architecture notes, summarize requirements, and generate implementation plans.</p>
                         </div>
                     </article>
                 </div>
 
-                <form id="composer" class="border-t u-border-subtle bg-white/60 p-4 sm:p-6">
-                    <label for="prompt" class="mb-2 block font-mono text-xs tracking-wider u-text-3">MESSAGE</label>
+                <form id="composer" class="border-t u-border-subtle p-4 sm:p-6">
+                    <label for="prompt" class="mb-2 block u-font-code text-[11px] tracking-wider text-accent-400">MESSAGE</label>
                     <div class="flex flex-col gap-3 sm:flex-row">
-                        <textarea id="prompt" name="prompt" rows="2" class="card w-full resize-none rounded-none bg-transparent px-4 py-3 text-sm text-white placeholder:text-white/50 focus:outline-none" placeholder="Type your message..." required></textarea>
-                        <button type="submit" class="btn btn-primary w-full sm:w-auto px-7 sm:px-10 py-4 sm:py-5 text-sm sm:text-base font-semibold font-alt">Send</button>
-                    </div>
-                    <p class="mt-2 font-mono text-[11px] u-text-3">Backend target: OpenAI API (to be connected server-side).</p>
-                </form>
-            </section>
-        </div>
+                    <textarea id="prompt" name="prompt" rows="2" class="chat-copy card w-full resize-none rounded-none bg-transparent px-4 py-3 u-text-1 placeholder:text-white/50 focus:outline-none" style="border: 0.5px solid rgba(255, 255, 255, 0.10);" placeholder="Type your message..." required></textarea>
+                    <button type="submit" class="btn btn-primary w-full sm:w-auto px-6 py-3 text-[11px] font-semibold u-font-code">Send</button>
+                </div>
+                <div class="mt-2">
+                    <span class="badge badge-chat u-font-code tracking-wide">Backend target: OpenAI API (to be connected server-side).</span>
+                </div>
+            </form>
+        </section>
     </main>
 
+    <script src="scripts/navbar.js"></script>
     <script>
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuToggle.setAttribute('aria-expanded', String(!isExpanded));
+            });
 
-        const particles = [];
-        const particleCount = 40;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.2 + 0.4;
-                this.speedX = Math.random() * 0.3 - 0.15;
-                this.speedY = Math.random() * 0.3 - 0.15;
-                this.opacity = Math.random() * 0.25 + 0.15;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                else if (this.x < 0) this.x = canvas.width;
-
-                if (this.y > canvas.height) this.y = 0;
-                else if (this.y < 0) this.y = canvas.height;
-            }
-
-            draw() {
-                ctx.fillStyle = `rgba(96, 165, 250, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
         }
-
-        function initParticles() {
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (const particle of particles) {
-                particle.update();
-                particle.draw();
-            }
-            requestAnimationFrame(animateParticles);
-        }
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
 
         const composer = document.getElementById('composer');
         const prompt = document.getElementById('prompt');
@@ -131,9 +78,9 @@
             const userBlock = document.createElement('article');
             userBlock.className = 'ml-auto max-w-3xl';
             userBlock.innerHTML = `
-                <p class="mb-2 text-right font-mono text-[11px] tracking-wider text-accent-200">YOU</p>
-                <div class="card rounded-md p-4">
-                    <p class="u-text-1"></p>
+                <p class="mb-2 text-right u-font-code text-[11px] tracking-wider text-accent-200">YOU</p>
+                <div class="card rounded-md p-4" style="border: 0.5px solid rgba(255, 255, 255, 0.10);">
+                    <p class="u-text-1 u-font-code text-[11px]"></p>
                 </div>
             `;
             userBlock.querySelector('p.u-text-1').textContent = text;
@@ -142,9 +89,9 @@
             const assistantBlock = document.createElement('article');
             assistantBlock.className = 'max-w-3xl';
             assistantBlock.innerHTML = `
-                <p class="mb-2 font-mono text-[11px] tracking-wider text-accent-400">ASSISTANT</p>
-                <div class="card rounded-md p-4">
-                    <p class="u-text-1">[Placeholder] Wire this action to your backend endpoint that calls the OpenAI API.</p>
+                <p class="mb-2 u-font-code text-[11px] tracking-wider text-accent-400">ASSISTANT</p>
+                <div class="card rounded-md p-4" style="border: 0.5px solid rgba(255, 255, 255, 0.10);">
+                    <p class="u-text-1 u-font-code text-[11px]">[Placeholder] Wire this action to your backend endpoint that calls the OpenAI API.</p>
                 </div>
             `;
             messages.appendChild(assistantBlock);
@@ -152,9 +99,6 @@
             prompt.value = '';
             messages.scrollTop = messages.scrollHeight;
         });
-
-        initParticles();
-        animateParticles();
     </script>
 </body>
 </html>

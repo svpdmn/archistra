@@ -15,50 +15,7 @@
     <!-- Particles Canvas -->
     <canvas id="particles"></canvas>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50" style="background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
-            <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-                <!-- Brand Name (left) -->
-                <div class="flex items-center">
-                    <span class="text-xl sm:text-2xl font-semibold font-display logo-glow">archistra</span>
-                </div>
-
-                <!-- Centered Logo -->
-                <div class="flex justify-center">
-                    <img src="assets/archistra-logo.svg" alt="Archistra logo" class="w-9 h-9 sm:w-10 sm:h-10" />
-                </div>
-
-                <!-- Navigation (right) -->
-                <div class="flex items-center justify-end">
-                    <button
-                        id="mobile-menu-toggle"
-                        type="button"
-                        class="md:hidden inline-flex items-center justify-center rounded-none p-2 text-white/80 border border-white/20 bg-white/5 hover:bg-white/10 u-calm"
-                        aria-controls="mobile-menu"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation menu"
-                    >
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-
-                    <div class="hidden md:flex items-center justify-end gap-8 font-alt text-xs tracking-wider">
-                        <a href="chat.html" class="u-text-2 hover:text-accent-400 u-calm">CHAT</a>
-                        <a href="#services" class="u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
-                        <a href="#contact" class="u-text-2 hover:text-accent-400 u-calm">READY TO TRANSFORM?</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="mobile-menu" class="md:hidden hidden mt-3 rounded-md card p-4 space-y-3 font-alt text-xs tracking-wider">
-                <a href="chat.html" class="block u-text-2 hover:text-accent-400 u-calm">CHAT</a>
-                <a href="#services" class="block u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
-                <a href="#contact" class="block u-text-2 hover:text-accent-400 u-calm">READY TO TRANSFORM?</a>
-            </div>
-        </div>
-    </nav>
+    <div id="site-nav" data-page="home"></div>
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 px-4 sm:px-6" style="z-index: 2;">
@@ -344,6 +301,7 @@
         </div>
     </footer>
 
+    <script src="scripts/navbar.js"></script>
     <script src="scripts/app.js"></script>
 </body>
 </html>
