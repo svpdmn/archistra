@@ -13,7 +13,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 92px 24px 24px;
 }
 
 .home-shell {
@@ -36,34 +36,149 @@ body {
   margin-top: 8px;
 }
 
+.content-page-root {
+  min-height: 100vh;
+  padding: 92px 18px 18px;
+}
+
+.content-page-shell {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 28px 22px;
+  display: grid;
+  gap: 18px;
+}
+
+.content-page-header {
+  display: grid;
+  gap: 8px;
+}
+
+.content-page-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.08;
+}
+
+.content-page-body {
+  display: grid;
+  gap: 16px;
+}
+
+.content-section {
+  display: grid;
+  gap: 10px;
+}
+
+.content-section-title {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  line-height: 1.2;
+}
+
+.content-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.content-card {
+  padding: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.content-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.content-card p {
+  margin: 0;
+}
+
+.content-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 6px;
+}
+
+.content-cta {
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.site-footer {
+  padding: 0 18px 18px;
+}
+
+.site-footer-shell {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 18px 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.site-footer-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.site-footer-heading {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.site-footer-links {
+  display: grid;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.site-footer-links a:hover {
+  color: rgba(147, 197, 253, 0.96);
+}
+
+.site-footer-copy {
+  margin: 0;
+  font-size: 0.7rem;
+}
+
 .chat-page-root {
   min-height: 100vh;
-  padding: 18px;
-  background: linear-gradient(180deg, #f3f4f6, #e9edf3);
-  color: rgba(15, 23, 42, 0.92);
+  padding: 92px 18px 18px;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .chat-page-root .lead {
-  color: rgba(15, 23, 42, 0.72);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .chat-page-root .u-text-1 {
-  color: rgba(15, 23, 42, 0.9);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .chat-page-root .u-text-2 {
-  color: rgba(15, 23, 42, 0.7);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .chat-page-root .u-text-3 {
-  color: rgba(15, 23, 42, 0.55);
+  color: rgba(255, 255, 255, 0.58);
 }
 
 .chat-page-root .card,
 .chat-page-root .card-strong {
-  background: rgba(15, 27, 45, 0.04);
-  border-color: rgba(15, 27, 45, 0.15);
-  box-shadow: 0 8px 20px rgba(15, 27, 45, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.34);
 }
 
 .chat-shell {
@@ -76,7 +191,7 @@ body {
 }
 
 .chat-header {
-  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -109,8 +224,8 @@ body {
 }
 
 .chat-composer {
-  border-top: 1px solid rgba(15, 23, 42, 0.12);
-  background: rgba(255, 255, 255, 0.65);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(7, 12, 22, 0.72);
   padding: 16px 20px 20px;
   display: grid;
   gap: 8px;
@@ -126,16 +241,16 @@ body {
   width: 100%;
   resize: vertical;
   min-height: 96px;
-  background: rgba(255, 255, 255, 0.6);
-  color: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 10px 12px;
   font-size: 14px;
   line-height: 1.45;
 }
 
 .chat-input::placeholder {
-  color: rgba(15, 23, 42, 0.45);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .chat-input:focus-visible {
@@ -158,8 +273,25 @@ button:disabled {
 }
 
 @media (min-width: 768px) {
+  .content-page-root {
+    padding: 96px 24px 24px;
+  }
+
+  .content-page-shell {
+    padding: 34px 28px;
+    gap: 22px;
+  }
+
+  .site-footer {
+    padding: 0 24px 24px;
+  }
+
+  .site-footer-shell {
+    padding: 20px 24px;
+  }
+
   .chat-page-root {
-    padding: 24px;
+    padding: 96px 24px 24px;
   }
 
   .chat-header {

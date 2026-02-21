@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ChatMessage, ChatRequestBody } from "@/lib/chat-types";
-import { createOpenAIResponse } from "@/lib/openai";
+import { createOpenRouterResponse } from "@/lib/openrouter";
 import { checkRateLimit, pruneRateLimitStore } from "@/lib/rate-limit";
+import { requireApiAuth } from "@/lib/auth/session";
 
 const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 4000;
@@ -65,13 +66,58 @@ function parseAndValidateBody(body: unknown): ChatMessage[] {
   return normalized;
 }
 
+function parseUpstreamStatus(error: unknown): number | null {
+  if (!error || typeof error !== "object" || !("status" in error)) return null;
+  const value = (error as { status?: unknown }).status;
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+function parsePositiveInteger(value: string | undefined, fallback: number): number {
+  if (!value) return fallback;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return fallback;
+  const normalized = Math.round(parsed);
+  return normalized > 0 ? normalized : fallback;
+}
+
 export async function POST(request: NextRequest) {
   const requestId = crypto.randomUUID();
   const start = Date.now();
+  const chatAuthBypass = process.env.CHAT_AUTH_BYPASS === "true" && process.env.NODE_ENV !== "production";
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  let resolvedClaims: {
+    sub: string;
+    email: string | null;
+    emailVerified: boolean;
+    orgId: string | null;
+    orgName: string | null;
+    roles: string[];
+  };
+
+  if (chatAuthBypass) {
+    resolvedClaims = {
+        sub: "guest",
+        email: null,
+        emailVerified: false,
+        orgId: "public",
+        orgName: "Public",
+        roles: ["viewer"]
+      };
+  } else {
+    const authResult = await requireApiAuth(request, {
+      requestId,
+      allowedRoles: ["owner", "admin", "member", "viewer"],
+      requireOrg: true
+    });
+    if (!authResult.ok) {
+      return authResult.response;
+    }
+    resolvedClaims = authResult.context.claims;
+  }
+
+  const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
-    return NextResponse.json({ error: "OPENAI_API_KEY is not configured.", requestId }, { status: 500 });
+    return NextResponse.json({ error: "OPENROUTER_API_KEY is not configured.", requestId }, { status: 500 });
   }
 
   const ip = getClientIp(request);
@@ -79,7 +125,11 @@ export async function POST(request: NextRequest) {
   const rateLimitWindowMs = Number(process.env.CHAT_RATE_LIMIT_WINDOW_MS || 60_000);
 
   pruneRateLimitStore();
-  const limit = checkRateLimit(`chat:${ip}`, rateLimitMaxRequests, rateLimitWindowMs);
+  const limit = checkRateLimit(
+    `chat:${resolvedClaims.orgId || "no-org"}:${resolvedClaims.sub || "no-sub"}:${ip}`,
+    rateLimitMaxRequests,
+    rateLimitWindowMs
+  );
 
   if (!limit.allowed) {
     return NextResponse.json(
@@ -103,12 +153,16 @@ export async function POST(request: NextRequest) {
     const body = (await request.json()) as unknown;
     const messages = parseAndValidateBody(body);
 
-    const model = process.env.OPENAI_MODEL || "gpt-4.1-mini";
-    const timeoutMs = Number(process.env.OPENAI_TIMEOUT_MS || 20_000);
-    const maxOutputTokens = Number(process.env.OPENAI_MAX_OUTPUT_TOKENS || 500);
-    const temperature = Number(process.env.OPENAI_TEMPERATURE || 0.3);
+    const model = process.env.OPENROUTER_MODEL || "deepseek/deepseek-r1-0528:free";
+    const requestedTimeoutMs = parsePositiveInteger(process.env.OPENROUTER_TIMEOUT_MS, 60_000);
+    const timeoutMs =
+      model.includes("deepseek-r1") && Number.isFinite(requestedTimeoutMs)
+        ? Math.max(requestedTimeoutMs, 120_000)
+        : requestedTimeoutMs;
+    const maxOutputTokens = parsePositiveInteger(process.env.OPENROUTER_MAX_OUTPUT_TOKENS, 500);
+    const temperature = Number(process.env.OPENROUTER_TEMPERATURE || 0.3);
 
-    const openAiResult = await createOpenAIResponse({
+    const openRouterResult = await createOpenRouterResponse({
       apiKey,
       model,
       messages,
@@ -123,8 +177,13 @@ export async function POST(request: NextRequest) {
         event: "chat_success",
         requestId,
         ip,
+        sub: resolvedClaims.sub,
+        orgId: resolvedClaims.orgId,
+        roles: resolvedClaims.roles,
         durationMs,
-        model,
+        modelRequested: model,
+        modelResolved: openRouterResult.model,
+        timeoutMs,
         messageCount: messages.length,
         inputCharacters: messages.reduce((acc, msg) => acc + msg.content.length, 0)
       })
@@ -132,9 +191,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       {
-        id: openAiResult.id,
-        outputText: openAiResult.outputText,
-        model,
+        id: openRouterResult.id,
+        outputText: openRouterResult.outputText,
+        model: openRouterResult.model,
         requestId
       },
       {
@@ -149,13 +208,29 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     const durationMs = Date.now() - start;
     const message = error instanceof Error ? error.message : "Unknown chat error.";
+    const upstreamStatus = parseUpstreamStatus(error);
 
-    const isTimeout = message.toLowerCase().includes("timed out") || message.toLowerCase().includes("abort");
-    const isOpenAiError = message.startsWith("OpenAI request failed");
-    const statusCode = isTimeout ? 504 : isOpenAiError ? 502 : 400;
+    const isTimeout =
+      message.toLowerCase().includes("timed out") ||
+      message.toLowerCase().includes("timeout") ||
+      message.toLowerCase().includes("abort");
+    const isProviderError = message.startsWith("OpenRouter request failed");
+    const statusCode = isTimeout
+      ? 504
+      : upstreamStatus === 429
+      ? 429
+      : upstreamStatus === 503
+      ? 503
+      : isProviderError
+      ? 502
+      : 400;
     const safeMessage = message.includes("Unexpected token")
       ? "Malformed JSON body."
-      : isOpenAiError
+      : upstreamStatus === 429
+      ? "Upstream rate limited. Please retry shortly."
+      : upstreamStatus === 402
+      ? "Upstream billing or credit issue."
+      : isProviderError
       ? "Upstream model request failed."
       : message;
 
@@ -164,8 +239,12 @@ export async function POST(request: NextRequest) {
         event: "chat_error",
         requestId,
         ip,
+        sub: resolvedClaims.sub,
+        orgId: resolvedClaims.orgId,
+        roles: resolvedClaims.roles,
         durationMs,
         statusCode,
+        upstreamStatus,
         error: safeMessage,
         upstreamError: message
       })

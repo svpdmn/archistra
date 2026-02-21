@@ -40,64 +40,94 @@
                     <button type="submit" class="btn btn-primary w-full sm:w-auto px-6 py-3 text-[11px] font-semibold u-font-code">Send</button>
                 </div>
                 <div class="mt-2">
-                    <span class="badge badge-chat u-font-code tracking-wide">Backend target: OpenAI API (to be connected server-side).</span>
+                    <span class="badge badge-chat u-font-code tracking-wide">Backend target: OpenRouter via /api/chat.</span>
                 </div>
             </form>
         </section>
     </main>
 
+    <script src="scripts/auth-ui.js"></script>
     <script src="scripts/navbar.js"></script>
     <script>
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (mobileMenuToggle && mobileMenu) {
-            mobileMenuToggle.addEventListener('click', () => {
-                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
-                mobileMenu.classList.toggle('hidden');
-                mobileMenuToggle.setAttribute('aria-expanded', String(!isExpanded));
-            });
-
-            window.addEventListener('resize', () => {
-                if (window.innerWidth >= 768) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-
         const composer = document.getElementById('composer');
         const prompt = document.getElementById('prompt');
         const messages = document.getElementById('messages');
+        const submitButton = composer.querySelector('button[type="submit"]');
 
-        composer.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const text = prompt.value.trim();
-            if (!text) return;
+        const messageState = [
+            {
+                role: 'assistant',
+                content: 'Hello. I can help draft architecture notes, summarize requirements, and generate implementation plans.'
+            }
+        ];
 
-            const userBlock = document.createElement('article');
-            userBlock.className = 'ml-auto max-w-3xl';
-            userBlock.innerHTML = `
-                <p class="mb-2 text-right u-font-code text-[11px] tracking-wider text-accent-200">YOU</p>
+        function createMessageBlock(role, content) {
+            const block = document.createElement('article');
+            block.className = role === 'user' ? 'ml-auto max-w-3xl' : 'max-w-3xl';
+            block.innerHTML = `
+                <p class="mb-2 ${role === 'user' ? 'text-right text-accent-200' : 'text-accent-400'} u-font-code text-[11px] tracking-wider">${role === 'user' ? 'YOU' : 'ASSISTANT'}</p>
                 <div class="card rounded-md p-4" style="border: 0.5px solid rgba(255, 255, 255, 0.10);">
                     <p class="u-text-1 u-font-code text-[11px]"></p>
                 </div>
             `;
-            userBlock.querySelector('p.u-text-1').textContent = text;
-            messages.appendChild(userBlock);
-
-            const assistantBlock = document.createElement('article');
-            assistantBlock.className = 'max-w-3xl';
-            assistantBlock.innerHTML = `
-                <p class="mb-2 u-font-code text-[11px] tracking-wider text-accent-400">ASSISTANT</p>
-                <div class="card rounded-md p-4" style="border: 0.5px solid rgba(255, 255, 255, 0.10);">
-                    <p class="u-text-1 u-font-code text-[11px]">[Placeholder] Wire this action to your backend endpoint that calls the OpenAI API.</p>
-                </div>
-            `;
-            messages.appendChild(assistantBlock);
-
-            prompt.value = '';
+            block.querySelector('p.u-text-1').textContent = content;
+            messages.appendChild(block);
             messages.scrollTop = messages.scrollHeight;
+            return block;
+        }
+
+        async function submitChat(messagesPayload) {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({ messages: messagesPayload })
+            });
+
+            const body = await response.json().catch(() => null);
+            if (!response.ok) {
+                const errorText = body && body.error ? body.error : `Request failed with status ${response.status}`;
+                const error = new Error(errorText);
+                error.status = response.status;
+                throw error;
+            }
+
+            return body;
+        }
+
+        composer.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const text = prompt.value.trim();
+            if (!text) return;
+
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+
+            createMessageBlock('user', text);
+            messageState.push({ role: 'user', content: text });
+            prompt.value = '';
+
+            const thinkingBlock = createMessageBlock('assistant', 'Thinking...');
+
+            try {
+                const result = await submitChat(messageState);
+                const assistantText = typeof result.outputText === 'string' && result.outputText.trim()
+                    ? result.outputText.trim()
+                    : 'No response text returned by model.';
+                thinkingBlock.querySelector('p.u-text-1').textContent = assistantText;
+                messageState.push({ role: 'assistant', content: assistantText });
+            } catch (error) {
+                const status = Number(error && error.status) || 0;
+                let message = error instanceof Error ? error.message : 'Unknown request error.';
+                if (status === 401) message = 'Session expired. Sign in again at /auth/login?returnTo=/chat';
+                if (status === 403) message = 'Access denied for current role/org.';
+                thinkingBlock.querySelector('p.u-text-1').textContent = `Error: ${message}`;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+                messages.scrollTop = messages.scrollHeight;
+            }
         });
     </script>
 </body>

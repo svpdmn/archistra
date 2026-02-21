@@ -1,38 +1,80 @@
-(function renderSharedNavbar() {
-    const mountNode = document.getElementById('site-nav');
+(async function renderSharedNavbar() {
+    const mountNode = document.getElementById("site-nav");
     if (!mountNode) return;
 
-    const page = mountNode.dataset.page === 'chat' ? 'chat' : 'home';
-    const isHome = page === 'home';
+    const homeHref = "/";
+    const aboutHref = "/about";
+    const securityHref = "/security";
+    const contactHref = "/contact";
+    const chatHref = "/chat";
+    const authLoginHref = "/auth/login?returnTo=/chat";
 
-    const solutionsHref = isHome ? '#services' : 'index.html#services';
-    const ctaHref = isHome ? '#contact' : 'index.html#contact';
-    const chatHref = 'chat.html';
-    const homeHref = 'index.html';
+    const authUi = window.ArchistraAuthUi;
+    const authState = authUi ? await authUi.fetchAuthState() : { isAuthenticated: false, email: null, orgId: null, orgName: null, roles: [] };
+    const accountLabel = authUi ? authUi.formatAccountLabel(authState) : "ACCOUNT";
+    const orgLabel = authState.orgName || authState.orgId || "No Org";
 
-    const desktopLinks = isHome
+    const authDesktopSlot = authState.isAuthenticated
         ? `
-            <a href="${chatHref}" class="u-text-2 hover:text-accent-400 u-calm">CHAT</a>
-            <a href="${solutionsHref}" class="u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
-            <a href="${ctaHref}" class="u-text-2 hover:text-accent-400 u-calm">READY TO TRANSFORM?</a>
+            <div class="relative" id="desktop-auth-container">
+                <button
+                    id="desktop-auth-toggle"
+                    type="button"
+                    class="btn btn-primary btn-size-nav auth-chip u-font-code"
+                    aria-expanded="false"
+                    aria-controls="desktop-auth-menu"
+                >
+                    ${accountLabel}
+                </button>
+                <div id="desktop-auth-menu" class="auth-menu card hidden" role="menu">
+                    <p class="auth-menu-meta u-text-3 u-font-code">${authState.email || "No email"}</p>
+                    <p class="auth-menu-meta u-text-3 u-font-code">Org: ${orgLabel}</p>
+                    <a href="/chat" class="auth-menu-item" role="menuitem">Continue to Chat</a>
+                    <a href="/auth/logout" class="auth-menu-item" role="menuitem">Log Out</a>
+                </div>
+            </div>
         `
-        : `
-            <a href="${homeHref}" class="u-text-2 hover:text-accent-400 u-calm">HOME</a>
-            <a href="${solutionsHref}" class="u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
-            <a href="${chatHref}" class="u-text-2 hover:text-accent-400 u-calm">CHAT</a>
-        `;
+        : `<a href="${authLoginHref}" class="btn btn-primary btn-size-nav font-semibold u-font-code">SIGN UP</a>`;
 
-    const mobileLinks = isHome
+    const authMobileSlot = authState.isAuthenticated
         ? `
-            <a href="${chatHref}" class="block u-text-2 hover:text-accent-400 u-calm">CHAT</a>
-            <a href="${solutionsHref}" class="block u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
-            <a href="${ctaHref}" class="block u-text-2 hover:text-accent-400 u-calm">READY TO TRANSFORM?</a>
+            <div class="space-y-2">
+                <button
+                    id="mobile-auth-toggle"
+                    type="button"
+                    class="inline-flex items-center justify-center btn btn-primary btn-size-nav auth-chip u-font-code"
+                    aria-expanded="false"
+                    aria-controls="mobile-auth-menu"
+                >
+                    ${accountLabel}
+                </button>
+                <div id="mobile-auth-menu" class="auth-menu card hidden" role="menu">
+                    <p class="auth-menu-meta u-text-3 u-font-code">${authState.email || "No email"}</p>
+                    <p class="auth-menu-meta u-text-3 u-font-code">Org: ${orgLabel}</p>
+                    <a href="/chat" class="auth-menu-item" role="menuitem">Continue to Chat</a>
+                    <a href="/auth/logout" class="auth-menu-item" role="menuitem">Log Out</a>
+                </div>
+            </div>
         `
-        : `
-            <a href="${homeHref}" class="block u-text-2 hover:text-accent-400 u-calm">HOME</a>
-            <a href="${solutionsHref}" class="block u-text-2 hover:text-accent-400 u-calm">SOLUTIONS</a>
-            <a href="${chatHref}" class="block u-text-2 hover:text-accent-400 u-calm">CHAT</a>
-        `;
+        : `<a href="${authLoginHref}" class="inline-flex items-center justify-center btn btn-primary btn-size-nav font-semibold u-font-code">SIGN UP</a>`;
+
+    const desktopLinks = `
+        <a href="${homeHref}" class="u-text-2 hover:text-accent-400 u-calm">HOME</a>
+        <a href="${aboutHref}" class="u-text-2 hover:text-accent-400 u-calm">ABOUT</a>
+        <a href="${securityHref}" class="u-text-2 hover:text-accent-400 u-calm">SECURITY</a>
+        <a href="${contactHref}" class="u-text-2 hover:text-accent-400 u-calm">CONTACT</a>
+        <a href="${chatHref}" class="u-text-2 hover:text-accent-400 u-calm">CHAT</a>
+        ${authDesktopSlot}
+    `;
+
+    const mobileLinks = `
+        <a href="${homeHref}" class="block u-text-2 hover:text-accent-400 u-calm">HOME</a>
+        <a href="${aboutHref}" class="block u-text-2 hover:text-accent-400 u-calm">ABOUT</a>
+        <a href="${securityHref}" class="block u-text-2 hover:text-accent-400 u-calm">SECURITY</a>
+        <a href="${contactHref}" class="block u-text-2 hover:text-accent-400 u-calm">CONTACT</a>
+        <a href="${chatHref}" class="block u-text-2 hover:text-accent-400 u-calm">CHAT</a>
+        ${authMobileSlot}
+    `;
 
     mountNode.innerHTML = `
         <nav class="fixed w-full top-0 z-50" style="background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
@@ -74,4 +116,56 @@
             </div>
         </nav>
     `;
+
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener("click", () => {
+            const isExpanded = mobileMenuToggle.getAttribute("aria-expanded") === "true";
+            mobileMenu.classList.toggle("hidden");
+            mobileMenuToggle.setAttribute("aria-expanded", String(!isExpanded));
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.add("hidden");
+                mobileMenuToggle.setAttribute("aria-expanded", "false");
+            }
+        });
+    }
+
+    function wireAuthMenu(toggleId, menuId) {
+        const toggle = document.getElementById(toggleId);
+        const menu = document.getElementById(menuId);
+        if (!toggle || !menu) return;
+
+        const closeMenu = () => {
+            menu.classList.add("hidden");
+            toggle.setAttribute("aria-expanded", "false");
+        };
+
+        toggle.addEventListener("click", () => {
+            const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+            menu.classList.toggle("hidden");
+            toggle.setAttribute("aria-expanded", String(!isExpanded));
+        });
+
+        document.addEventListener("click", (event) => {
+            const target = event.target;
+            if (!menu.classList.contains("hidden") && !menu.contains(target) && !toggle.contains(target)) {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMenu();
+                toggle.focus();
+            }
+        });
+    }
+
+    wireAuthMenu("desktop-auth-toggle", "desktop-auth-menu");
+    wireAuthMenu("mobile-auth-toggle", "mobile-auth-menu");
 })();

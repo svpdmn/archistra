@@ -1,13 +1,26 @@
 import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
+import { requireApiAuth } from "@/lib/auth/session";
 
-const OPENAI_CHAT_COMPLETIONS_URL = "https://api.openai.com/v1/chat/completions";
+const OPENROUTER_CHAT_COMPLETIONS_URL = "https://openrouter.ai/api/v1/chat/completions";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   const requestId = crypto.randomUUID();
   const start = Date.now();
 
-  const apiKey = process.env.OPENAI_API_KEY;
-  const model = process.env.OPENAI_MODEL || "gpt-4.1-mini";
+  const authResult = await requireApiAuth(request, {
+    requestId,
+    allowedRoles: ["owner", "admin"],
+    requireOrg: true,
+    requireVerifiedEmail: true
+  });
+  if (!authResult.ok) {
+    return authResult.response;
+  }
+  const { claims } = authResult.context;
+
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  const model = process.env.OPENROUTER_MODEL || "deepseek/deepseek-r1-0528:free";
 
   if (!apiKey) {
     return NextResponse.json(
@@ -15,18 +28,20 @@ export async function GET() {
         ok: false,
         requestId,
         model,
-        error: "OPENAI_API_KEY is not configured."
+        error: "OPENROUTER_API_KEY is not configured."
       },
       { status: 500 }
     );
   }
 
   try {
-    const response = await fetch(OPENAI_CHAT_COMPLETIONS_URL, {
+    const response = await fetch(OPENROUTER_CHAT_COMPLETIONS_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`
+        Authorization: `Bearer ${apiKey}`,
+        "HTTP-Referer": process.env.OPENROUTER_SITE_URL || process.env.AUTH0_BASE_URL || "http://localhost:3000",
+        "X-Title": process.env.OPENROUTER_APP_NAME || "archistra"
       },
       body: JSON.stringify({
         model,
@@ -41,12 +56,15 @@ export async function GET() {
 
     if (!response.ok) {
       const upstreamBody = await response.text().catch(() => "");
-      const details = `OpenAI healthcheck failed (${response.status}): ${upstreamBody.slice(0, 400)}`;
+      const details = `OpenRouter healthcheck failed (${response.status}): ${upstreamBody.slice(0, 400)}`;
 
       console.error(
         JSON.stringify({
-          event: "openai_healthcheck_error",
+          event: "openrouter_healthcheck_error",
           requestId,
+          sub: claims.sub,
+          orgId: claims.orgId,
+          roles: claims.roles,
           model,
           status: response.status,
           durationMs
@@ -58,7 +76,7 @@ export async function GET() {
           ok: false,
           requestId,
           model,
-          error: "OpenAI healthcheck failed.",
+          error: "OpenRouter healthcheck failed.",
           ...(process.env.NODE_ENV !== "production" ? { details } : {})
         },
         { status: 502 }
@@ -67,8 +85,11 @@ export async function GET() {
 
     console.info(
       JSON.stringify({
-        event: "openai_healthcheck_ok",
+        event: "openrouter_healthcheck_ok",
         requestId,
+        sub: claims.sub,
+        orgId: claims.orgId,
+        roles: claims.roles,
         model,
         durationMs
       })
@@ -80,7 +101,7 @@ export async function GET() {
         requestId,
         model,
         latencyMs: durationMs,
-        message: "OpenAI API key and model are valid."
+        message: "OpenRouter API key and model are valid."
       },
       { status: 200 }
     );
@@ -91,8 +112,11 @@ export async function GET() {
 
     console.error(
       JSON.stringify({
-        event: "openai_healthcheck_exception",
+        event: "openrouter_healthcheck_exception",
         requestId,
+        sub: claims.sub,
+        orgId: claims.orgId,
+        roles: claims.roles,
         model,
         durationMs,
         error: message
@@ -104,7 +128,7 @@ export async function GET() {
         ok: false,
         requestId,
         model,
-        error: isTimeout ? "OpenAI healthcheck timed out." : "OpenAI healthcheck failed.",
+        error: isTimeout ? "OpenRouter healthcheck timed out." : "OpenRouter healthcheck failed.",
         ...(process.env.NODE_ENV !== "production" ? { details: message } : {})
       },
       { status: isTimeout ? 504 : 500 }
