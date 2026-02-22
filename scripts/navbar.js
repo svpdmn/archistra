@@ -3,11 +3,11 @@
     if (!mountNode) return;
 
     const homeHref = "/";
-    const aboutHref = "/about";
-    const securityHref = "/security";
-    const contactHref = "/contact";
-    const chatHref = "/chat";
-    const authLoginHref = "/auth/login?returnTo=/chat";
+    const aboutHref = "/about.html";
+    const securityHref = "/security.html";
+    const contactHref = "/contact.html";
+    const chatHref = "/chat.html";
+    const authLoginHref = "/auth/login?returnTo=/chat.html";
 
     const authUi = window.ArchistraAuthUi;
     const authState = authUi ? await authUi.fetchAuthState() : { isAuthenticated: false, email: null, orgId: null, orgName: null, roles: [] };
@@ -29,7 +29,7 @@
                 <div id="desktop-auth-menu" class="auth-menu card hidden" role="menu">
                     <p class="auth-menu-meta u-text-3 u-font-code">${authState.email || "No email"}</p>
                     <p class="auth-menu-meta u-text-3 u-font-code">Org: ${orgLabel}</p>
-                    <a href="/chat" class="auth-menu-item" role="menuitem">Continue to Chat</a>
+                    <a href="${chatHref}" class="auth-menu-item" role="menuitem">Continue to Chat</a>
                     <a href="/auth/logout" class="auth-menu-item" role="menuitem">Log Out</a>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                 <div id="mobile-auth-menu" class="auth-menu card hidden" role="menu">
                     <p class="auth-menu-meta u-text-3 u-font-code">${authState.email || "No email"}</p>
                     <p class="auth-menu-meta u-text-3 u-font-code">Org: ${orgLabel}</p>
-                    <a href="/chat" class="auth-menu-item" role="menuitem">Continue to Chat</a>
+                    <a href="${chatHref}" class="auth-menu-item" role="menuitem">Continue to Chat</a>
                     <a href="/auth/logout" class="auth-menu-item" role="menuitem">Log Out</a>
                 </div>
             </div>

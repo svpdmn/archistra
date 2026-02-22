@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>archistra - Security</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scripts/tailwind-theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Tektur:wght@400;500;600;700;800;900&family=Geo:wght@400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/theme.css">
+</head>
+<body class="grid-pattern">
+    <canvas id="particles"></canvas>
+    <div id="site-nav" data-page="security"></div>
+
+    <main class="relative z-10 px-4 pt-24 pb-16 sm:px-6 sm:pt-28">
+        <section class="mx-auto w-full max-w-6xl card-strong rounded-xl2 p-6 sm:p-10 lg:p-14" style="border: 1px solid rgba(255, 255, 255, 0.14);">
+            <p class="u-font-code text-accent-400 text-xs tracking-widest mb-3">TRUST</p>
+            <h1 class="font-display text-4xl sm:text-5xl font-bold mb-4">Security posture built into the architecture.</h1>
+            <p class="lead max-w-3xl">
+                Security controls are integrated into identity, request handling, and operational workflows.
+            </p>
+
+            <section class="mt-12">
+                <h2 class="font-alt text-2xl sm:text-3xl font-semibold mb-4">Application Controls</h2>
+                <ul class="u-text-2 list-disc list-inside space-y-2">
+                    <li>Centralized authentication and organization-aware role checks.</li>
+                    <li>Server-side secret handling and guarded API access.</li>
+                    <li>Request validation, rate limiting, and structured security logging.</li>
+                    <li>Operational monitoring for upstream failures and abuse signals.</li>
+                </ul>
+            </section>
+
+            <section class="mt-12">
+                <h2 class="font-alt text-2xl sm:text-3xl font-semibold mb-4">Responsible Disclosure</h2>
+                <p class="u-text-2">
+                    If you identify a security issue, report it to
+                    <a class="text-accent-400 hover:text-accent-200 u-calm" href="mailto:security@archistra.app"> security@archistra.app</a>
+                    with reproduction details, impact scope, and timeline information. Do not publicly disclose
+                    vulnerabilities before coordinated remediation.
+                </p>
+            </section>
+
+            <section class="mt-12">
+                <h2 class="font-alt text-2xl sm:text-3xl font-semibold mb-4">Operational Guidance</h2>
+                <ul class="u-text-2 list-disc list-inside space-y-2">
+                    <li>Use least privilege roles for all user accounts.</li>
+                    <li>Rotate API keys and secrets on a defined cadence.</li>
+                    <li>Review auth and API access logs for anomalous activity.</li>
+                </ul>
+            </section>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="scripts/auth-ui.js"></script>
+    <script src="scripts/navbar.js"></script>
+    <script src="scripts/footer.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>

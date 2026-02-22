@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>archistra - About</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scripts/tailwind-theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Tektur:wght@400;500;600;700;800;900&family=Geo:wght@400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/theme.css">
+</head>
+<body class="grid-pattern">
+    <canvas id="particles"></canvas>
+    <div id="site-nav" data-page="about"></div>
+
+    <main class="relative z-10 px-4 pt-24 pb-16 sm:px-6 sm:pt-28">
+        <section class="mx-auto w-full max-w-6xl card-strong rounded-xl2 p-6 sm:p-10 lg:p-14" style="border: 1px solid rgba(255, 255, 255, 0.14);">
+            <p class="u-font-code text-accent-400 text-xs tracking-widest mb-3">COMPANY</p>
+            <h1 class="font-display text-4xl sm:text-5xl font-bold mb-4">Enterprise intelligence with architectural rigor.</h1>
+            <p class="lead max-w-3xl">
+                archistra is built for teams that need strategic speed without sacrificing system integrity.
+            </p>
+
+            <section class="mt-12">
+                <h2 class="font-alt text-2xl sm:text-3xl font-semibold mb-4">What We Solve</h2>
+                <p class="u-text-2">
+                    Most organizations struggle with fragmented planning, disconnected architecture artifacts, and execution drift.
+                    archistra provides a unified workspace to align strategy, capabilities, and implementation paths.
+                </p>
+            </section>
+
+            <section class="mt-12">
+                <h2 class="font-alt text-2xl sm:text-3xl font-semibold mb-6">Core Pillars</h2>
+                <div class="grid gap-4 md:grid-cols-2">
+                    <article class="card p-5">
+                        <h3 class="font-alt text-xl font-semibold mb-2">Strategy Alignment</h3>
+                        <p class="u-text-2">Map intent to capabilities, systems, and operating model decisions with explicit traceability.</p>
+                    </article>
+                    <article class="card p-5">
+                        <h3 class="font-alt text-xl font-semibold mb-2">Architecture Integrity</h3>
+                        <p class="u-text-2">Preserve coherence across business, data, application, and technology layers as the enterprise evolves.</p>
+                    </article>
+                    <article class="card p-5">
+                        <h3 class="font-alt text-xl font-semibold mb-2">Operational Discipline</h3>
+                        <p class="u-text-2">Move from ad hoc delivery to measurable execution patterns with clear ownership and feedback loops.</p>
+                    </article>
+                    <article class="card p-5">
+                        <h3 class="font-alt text-xl font-semibold mb-2">Risk-Aware Governance</h3>
+                        <p class="u-text-2">Identify and manage security, compliance, and delivery risks before they become structural failures.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="mt-12">
+                <h2 class="font-alt text-2xl sm:text-3xl font-semibold mb-4">Operating Principles</h2>
+                <ul class="u-text-2 list-disc list-inside space-y-2">
+                    <li>Model decisions explicitly and keep assumptions visible.</li>
+                    <li>Design for change by default, not as a late-stage exception.</li>
+                    <li>Use AI to accelerate analysis, but keep human accountability for final decisions.</li>
+                    <li>Treat security, privacy, and compliance as architecture constraints.</li>
+                </ul>
+            </section>
+
+            <section class="mt-12 card p-6 sm:p-8 text-center">
+                <p class="u-text-2 mb-5">Ready to move from fragmented context to coherent execution?</p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                    <a href="/chat.html" class="btn btn-primary w-full sm:w-auto px-6 py-3 text-xs sm:text-sm font-semibold font-alt">Open Chat Workspace</a>
+                    <a href="/contact.html" class="btn btn-ghost w-full sm:w-auto px-6 py-3 text-xs sm:text-sm font-semibold font-alt">Contact Team</a>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="scripts/auth-ui.js"></script>
+    <script src="scripts/navbar.js"></script>
+    <script src="scripts/footer.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
