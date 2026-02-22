@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>archistra - About</title>
+    <script>
+        (function initTheme() {
+            var key = "archistra-theme-mode";
+            var mode = "system";
+            try {
+                var stored = localStorage.getItem(key);
+                if (stored === "system" || stored === "light" || stored === "dark") {
+                    mode = stored;
+                }
+            } catch (_error) {}
+            var systemPrefersDark =
+                typeof window.matchMedia === "function" &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches;
+            var resolved = mode === "system" ? (systemPrefersDark ? "dark" : "light") : mode;
+            document.documentElement.dataset.themeMode = mode;
+            document.documentElement.dataset.theme = resolved;
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="scripts/tailwind-theme.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +34,7 @@
     <div id="site-nav" data-page="about"></div>
 
     <main class="relative z-10 px-4 pt-24 pb-16 sm:px-6 sm:pt-28">
-        <section class="mx-auto w-full max-w-6xl card-strong rounded-xl2 p-6 sm:p-10 lg:p-14" style="border: 1px solid rgba(255, 255, 255, 0.14);">
+        <section class="mx-auto w-full max-w-6xl card-strong rounded-xl2 p-6 sm:p-10 lg:p-14">
             <p class="u-font-code text-accent-400 text-xs tracking-widest mb-3">COMPANY</p>
             <h1 class="font-display text-4xl sm:text-5xl font-bold mb-4">Enterprise intelligence with architectural rigor.</h1>
             <p class="lead max-w-3xl">
@@ -76,6 +94,7 @@
     <div id="site-footer"></div>
 
     <script src="scripts/auth-ui.js"></script>
+    <script src="scripts/theme-mode.js"></script>
     <script src="scripts/navbar.js"></script>
     <script src="scripts/footer.js"></script>
     <script src="scripts/app.js"></script>

@@ -27,3 +27,12 @@ For all future coding sessions in this repository, Codex must default to:
 - Reusable React components.
 - Tailwind-first styling, aligned with existing project aesthetic.
 - Input validation, error handling, and secure secret handling for backend routes.
+
+## Theme System Contract
+- All current and future UI surfaces (static HTML + Next.js pages/components) must support tri-mode theme behavior: `system`, `light`, `dark`.
+- Respect persisted user preference (`archistra-theme-mode`) and resolved mode attributes (`data-theme-mode`, `data-theme`) on the root HTML element.
+- Use theme tokens from `styles/theme.css`; avoid hardcoded color literals in UI code.
+- Preserve the blue ambient particle-network + subtle grid background composition and behavior in both light and dark modes across viewports.
+- Use shared surface tokens for cards/sections (e.g. `--surface-card-*`, `--surface-card-strong-*`, `--surface-cta-*`, `--surface-shimmer-*`) so future pages stay visually stable across modes.
+- Keep shared navigation/theme controls wired in both static (`scripts/navbar.js`) and Next (`components/nav/site-nav.tsx`) implementations.
+- Run `npm run theme:check` before committing UI changes.

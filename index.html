@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>archistra - Fragments to Intelligence</title>
+    <script>
+        (function initTheme() {
+            var key = "archistra-theme-mode";
+            var mode = "system";
+            try {
+                var stored = localStorage.getItem(key);
+                if (stored === "system" || stored === "light" || stored === "dark") {
+                    mode = stored;
+                }
+            } catch (_error) {}
+            var systemPrefersDark =
+                typeof window.matchMedia === "function" &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches;
+            var resolved = mode === "system" ? (systemPrefersDark ? "dark" : "light") : mode;
+            document.documentElement.dataset.themeMode = mode;
+            document.documentElement.dataset.theme = resolved;
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="scripts/tailwind-theme.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,7 +96,7 @@
 
             <div class="grid gap-6 md:grid-cols-3 md:gap-8">
                 <!-- Service 1 -->
-                <div class="card-strong p-6 sm:p-8 hover-glow shimmer u-hover-lift u-panel text-center" style="border: 1px solid rgba(255, 255, 255, 0.14);">
+                <div class="card-strong p-6 sm:p-8 hover-glow shimmer u-hover-lift u-panel text-center">
                     <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center mb-6 mx-auto">
                         <svg class="w-8 h-8 text-bg-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
@@ -96,7 +114,7 @@
                 </div>
 
                 <!-- Service 2 -->
-                <div class="card-strong p-8 hover-glow shimmer u-hover-lift u-panel text-center" style="border: 1px solid rgba(255, 255, 255, 0.14);">
+                <div class="card-strong p-8 hover-glow shimmer u-hover-lift u-panel text-center">
                     <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-200 to-accent-400 flex items-center justify-center mb-6 mx-auto">
                         <svg class="w-8 h-8 text-bg-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -114,7 +132,7 @@
                 </div>
 
                 <!-- Service 3 -->
-                <div class="card-strong p-8 hover-glow shimmer u-hover-lift u-panel text-center" style="border: 1px solid rgba(255, 255, 255, 0.14);">
+                <div class="card-strong p-8 hover-glow shimmer u-hover-lift u-panel text-center">
                     <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center mb-6 mx-auto">
                         <svg class="w-8 h-8 text-bg-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
@@ -192,7 +210,7 @@
     <!-- CTA Section -->
     <section id="contact" class="relative py-20 md:py-32 px-4 sm:px-6" style="z-index: 2;">
         <div class="max-w-5xl mx-auto">
-            <div class="card-strong p-6 sm:p-10 lg:p-16 rounded-xl2 text-center" style="border: 1px solid rgba(255, 255, 255, 0.14);">
+            <div class="card-strong p-6 sm:p-10 lg:p-16 rounded-xl2 text-center">
                 <div class="font-mono text-accent-400 text-xs mb-6 tracking-widest">READY TO TRANSFORM?</div>
                 <h2 class="text-4xl md:text-5xl font-display font-bold mb-8">
                     Let's Build Your<br/>
@@ -229,6 +247,7 @@
     <div id="site-footer"></div>
 
     <script src="scripts/auth-ui.js"></script>
+    <script src="scripts/theme-mode.js"></script>
     <script src="scripts/navbar.js"></script>
     <script src="scripts/footer.js"></script>
     <script src="scripts/app.js"></script>

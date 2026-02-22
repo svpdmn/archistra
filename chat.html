@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>archistra chat</title>
+    <script>
+        (function initTheme() {
+            var key = "archistra-theme-mode";
+            var mode = "system";
+            try {
+                var stored = localStorage.getItem(key);
+                if (stored === "system" || stored === "light" || stored === "dark") {
+                    mode = stored;
+                }
+            } catch (_error) {}
+            var systemPrefersDark =
+                typeof window.matchMedia === "function" &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches;
+            var resolved = mode === "system" ? (systemPrefersDark ? "dark" : "light") : mode;
+            document.documentElement.dataset.themeMode = mode;
+            document.documentElement.dataset.theme = resolved;
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="scripts/tailwind-theme.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,10 +30,11 @@
     <link rel="stylesheet" href="styles/theme.css">
 </head>
 <body class="grid-pattern">
+    <canvas id="particles"></canvas>
     <div id="site-nav" data-page="chat"></div>
 
     <main class="relative z-10 min-h-screen px-4 pt-24 pb-8 sm:px-6 sm:pt-28 u-font-ui">
-        <section class="mx-auto flex min-h-[72vh] w-full max-w-5xl flex-col overflow-hidden card-strong rounded-xl2" style="border: 1px solid rgba(255, 255, 255, 0.14);">
+        <section class="mx-auto flex min-h-[72vh] w-full max-w-5xl flex-col overflow-hidden card-strong rounded-xl2">
             <div class="border-b u-border-subtle px-4 py-5 sm:px-6 sm:py-6 text-center">
                 <div class="u-font-code text-accent-400 text-xs tracking-widest mb-2">CHAT INTERFACE</div>
                 <h2 class="text-2xl sm:text-3xl font-display font-bold">Conversation Workspace</h2>
@@ -27,7 +46,7 @@
                 <div id="messages" class="flex-1 space-y-4 overflow-y-auto px-4 py-5 sm:px-6">
                     <article class="max-w-3xl">
                         <p class="mb-2 u-font-code text-[11px] tracking-wider text-accent-400">ASSISTANT</p>
-                        <div class="card rounded-md p-4" style="border: 0.5px solid rgba(255, 255, 255, 0.10);">
+                        <div class="card rounded-md p-4">
                             <p class="u-text-1 u-font-code text-[11px]">Hello. I can help draft architecture notes, summarize requirements, and generate implementation plans.</p>
                         </div>
                     </article>
@@ -36,7 +55,7 @@
                 <form id="composer" class="border-t u-border-subtle p-4 sm:p-6">
                     <label for="prompt" class="mb-2 block u-font-code text-[11px] tracking-wider text-accent-400">MESSAGE</label>
                     <div class="flex flex-col gap-3 sm:flex-row">
-                    <textarea id="prompt" name="prompt" rows="2" class="chat-copy card w-full resize-none rounded-none bg-transparent px-4 py-3 u-text-1 placeholder:text-white/50 focus:outline-none" style="border: 0.5px solid rgba(255, 255, 255, 0.10);" placeholder="Type your message..." required></textarea>
+                    <textarea id="prompt" name="prompt" rows="2" class="chat-copy card w-full resize-none rounded-none bg-transparent px-4 py-3 u-text-1 focus:outline-none" placeholder="Type your message..." required></textarea>
                     <button type="submit" class="btn btn-primary w-full sm:w-auto px-6 py-3 text-[11px] font-semibold u-font-code">Send</button>
                 </div>
                 <div class="mt-2">
@@ -49,8 +68,10 @@
     <div id="site-footer"></div>
 
     <script src="scripts/auth-ui.js"></script>
+    <script src="scripts/theme-mode.js"></script>
     <script src="scripts/navbar.js"></script>
     <script src="scripts/footer.js"></script>
+    <script src="scripts/app.js"></script>
     <script>
         const composer = document.getElementById('composer');
         const prompt = document.getElementById('prompt');
@@ -69,7 +90,7 @@
             block.className = role === 'user' ? 'ml-auto max-w-3xl' : 'max-w-3xl';
             block.innerHTML = `
                 <p class="mb-2 ${role === 'user' ? 'text-right text-accent-200' : 'text-accent-400'} u-font-code text-[11px] tracking-wider">${role === 'user' ? 'YOU' : 'ASSISTANT'}</p>
-                <div class="card rounded-md p-4" style="border: 0.5px solid rgba(255, 255, 255, 0.10);">
+                <div class="card rounded-md p-4">
                     <p class="u-text-1 u-font-code text-[11px]"></p>
                 </div>
             `;

@@ -58,12 +58,33 @@
         `
         : `<a href="${authLoginHref}" class="inline-flex items-center justify-center btn btn-primary btn-size-nav font-semibold u-font-code">SIGN UP</a>`;
 
+    const themeDesktopSlot = `
+        <button
+            id="theme-toggle-desktop"
+            type="button"
+            class="theme-toggle theme-toggle-nav"
+            aria-label="Theme: System"
+            title="Theme: System"
+        ></button>
+    `;
+
+    const themeMobileSlot = `
+        <button
+            id="theme-toggle-mobile"
+            type="button"
+            class="theme-toggle w-full justify-center"
+            aria-label="Theme: System"
+            title="Theme: System"
+        ></button>
+    `;
+
     const desktopLinks = `
         <a href="${homeHref}" class="u-text-2 hover:text-accent-400 u-calm">HOME</a>
         <a href="${aboutHref}" class="u-text-2 hover:text-accent-400 u-calm">ABOUT</a>
         <a href="${securityHref}" class="u-text-2 hover:text-accent-400 u-calm">SECURITY</a>
         <a href="${contactHref}" class="u-text-2 hover:text-accent-400 u-calm">CONTACT</a>
         <a href="${chatHref}" class="u-text-2 hover:text-accent-400 u-calm">CHAT</a>
+        ${themeDesktopSlot}
         ${authDesktopSlot}
     `;
 
@@ -73,11 +94,12 @@
         <a href="${securityHref}" class="block u-text-2 hover:text-accent-400 u-calm">SECURITY</a>
         <a href="${contactHref}" class="block u-text-2 hover:text-accent-400 u-calm">CONTACT</a>
         <a href="${chatHref}" class="block u-text-2 hover:text-accent-400 u-calm">CHAT</a>
+        <div class="pt-1">${themeMobileSlot}</div>
         ${authMobileSlot}
     `;
 
     mountNode.innerHTML = `
-        <nav class="fixed w-full top-0 z-50" style="background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+        <nav class="site-nav fixed w-full top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
                 <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
                     <div class="flex items-center">
@@ -94,7 +116,7 @@
                         <button
                             id="mobile-menu-toggle"
                             type="button"
-                            class="md:hidden inline-flex items-center justify-center rounded-none p-2 text-white/80 border border-white/20 bg-white/5 hover:bg-white/10 u-calm"
+                            class="mobile-menu-toggle md:hidden inline-flex items-center justify-center rounded-none p-2 u-calm"
                             aria-controls="mobile-menu"
                             aria-expanded="false"
                             aria-label="Toggle navigation menu"
@@ -168,4 +190,10 @@
 
     wireAuthMenu("desktop-auth-toggle", "desktop-auth-menu");
     wireAuthMenu("mobile-auth-toggle", "mobile-auth-menu");
+
+    const themeApi = window.ArchistraTheme;
+    if (themeApi && typeof themeApi.bindToggle === "function") {
+        themeApi.bindToggle(document.getElementById("theme-toggle-desktop"));
+        themeApi.bindToggle(document.getElementById("theme-toggle-mobile"));
+    }
 })();

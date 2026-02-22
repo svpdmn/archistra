@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run theme:check && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "npm run theme:check && next lint",
+    "theme:check": "node scripts/check-theme-compliance.mjs"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "4.1.0",

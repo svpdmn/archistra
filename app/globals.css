@@ -1,9 +1,5 @@
 @import "../styles/theme.css";
 
-:root {
-  color-scheme: dark;
-}
-
 body {
   min-height: 100vh;
 }
@@ -14,6 +10,8 @@ body {
   align-items: center;
   justify-content: center;
   padding: 92px 24px 24px;
+  position: relative;
+  z-index: 10;
 }
 
 .home-shell {
@@ -39,6 +37,8 @@ body {
 .content-page-root {
   min-height: 100vh;
   padding: 92px 18px 18px;
+  position: relative;
+  z-index: 10;
 }
 
 .content-page-shell {
@@ -112,6 +112,8 @@ body {
 
 .site-footer {
   padding: 0 18px 18px;
+  position: relative;
+  z-index: 10;
 }
 
 .site-footer-shell {
@@ -133,18 +135,18 @@ body {
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(var(--text-3), 0.85);
 }
 
 .site-footer-links {
   display: grid;
   gap: 4px;
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(var(--text-2), 0.85);
 }
 
 .site-footer-links a:hover {
-  color: rgba(147, 197, 253, 0.96);
+  color: rgba(var(--accent-400), 0.96);
 }
 
 .site-footer-copy {
@@ -155,30 +157,32 @@ body {
 .chat-page-root {
   min-height: 100vh;
   padding: 92px 18px 18px;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(var(--text-1), 0.92);
+  position: relative;
+  z-index: 10;
 }
 
 .chat-page-root .lead {
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(var(--text-2), 0.72);
 }
 
 .chat-page-root .u-text-1 {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(var(--text-1), 0.90);
 }
 
 .chat-page-root .u-text-2 {
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(var(--text-2), 0.72);
 }
 
 .chat-page-root .u-text-3 {
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(var(--text-3), 0.72);
 }
 
 .chat-page-root .card,
 .chat-page-root .card-strong {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.34);
+  background: rgba(var(--surface-card-bg-rgb), var(--surface-card-bg-alpha));
+  border-color: rgba(var(--surface-card-border-rgb), var(--surface-card-border-alpha));
+  box-shadow: var(--shadow-chat-card);
 }
 
 .chat-shell {
@@ -191,7 +195,7 @@ body {
 }
 
 .chat-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(var(--border-subtle), 0.14);
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -224,8 +228,8 @@ body {
 }
 
 .chat-composer {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(7, 12, 22, 0.72);
+  border-top: 1px solid rgba(var(--border-subtle), 0.14);
+  background: rgba(var(--composer-bg), var(--composer-bg-alpha));
   padding: 16px 20px 20px;
   display: grid;
   gap: 8px;
@@ -241,20 +245,20 @@ body {
   width: 100%;
   resize: vertical;
   min-height: 96px;
-  background: rgba(255, 255, 255, 0.03);
-  color: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(var(--glass-fill), 0.08);
+  color: rgba(var(--text-1), 0.94);
+  border: 1px solid rgba(var(--border-subtle), 0.16);
   padding: 10px 12px;
   font-size: 14px;
   line-height: 1.45;
 }
 
 .chat-input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(var(--text-3), 0.90);
 }
 
 .chat-input:focus-visible {
-  outline: 2px solid rgba(59, 130, 246, 0.45);
+  outline: 2px solid rgba(var(--focus-rgb), var(--focus-alpha));
   outline-offset: 2px;
 }
 
@@ -264,7 +268,7 @@ body {
 }
 
 .error-text {
-  color: #b42318;
+  color: rgba(var(--danger-rgb), 0.95);
 }
 
 button:disabled {

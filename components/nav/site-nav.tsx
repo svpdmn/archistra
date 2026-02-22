@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AuthSlot } from "@/components/nav/auth-slot";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 type SiteNavProps = {
   isAuthenticated: boolean;
@@ -42,6 +43,7 @@ export function SiteNav({ isAuthenticated, email, orgLabel }: SiteNavProps) {
               <Link href="/chat" className="u-text-2 hover:text-accent-400 u-calm">
                 CHAT
               </Link>
+              <ThemeToggle className="theme-toggle-nav" />
               <AuthSlot isAuthenticated={isAuthenticated} email={email} orgLabel={orgLabel} />
             </div>
 
@@ -59,6 +61,7 @@ export function SiteNav({ isAuthenticated, email, orgLabel }: SiteNavProps) {
                 <Link href="/chat" className="u-text-2 hover:text-accent-400 u-calm text-[11px] tracking-wider font-alt">
                   CHAT
                 </Link>
+                <ThemeToggle />
                 <AuthSlot isAuthenticated={isAuthenticated} email={email} orgLabel={orgLabel} />
               </div>
             </div>
