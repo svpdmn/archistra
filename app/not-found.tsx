@@ -19,10 +19,16 @@ export default async function NotFoundPage() {
           <h1 className="home-title font-display">Page not found</h1>
           <p className="lead">The page you requested does not exist or may have moved.</p>
           <div className="home-actions">
-            <Link href="/" className="btn btn-primary btn-size-page w-full sm:w-auto font-semibold font-alt">
+            <Link
+              href="/"
+              className="btn btn-primary w-full sm:w-auto px-4 py-2.5 text-[0.8125rem] leading-[1.125rem] font-semibold font-alt"
+            >
               Return Home
             </Link>
-            <Link href="/contact" className="btn btn-ghost btn-size-page w-full sm:w-auto font-semibold font-alt">
+            <Link
+              href="/contact"
+              className="btn btn-ghost w-full sm:w-auto px-4 py-2.5 text-[0.8125rem] leading-[1.125rem] font-semibold font-alt"
+            >
               Contact Support
             </Link>
           </div>

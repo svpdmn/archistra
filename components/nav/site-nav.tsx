@@ -31,20 +31,8 @@ export function SiteNav({ isAuthenticated, email, orgLabel }: SiteNavProps) {
               <Link href="/" className="u-text-2 hover:text-accent-400 u-calm">
                 HOME
               </Link>
-              <Link href="/about" className="u-text-2 hover:text-accent-400 u-calm">
-                ABOUT
-              </Link>
-              <Link href="/security" className="u-text-2 hover:text-accent-400 u-calm">
-                SECURITY
-              </Link>
-              <Link href="/contact" className="u-text-2 hover:text-accent-400 u-calm">
-                CONTACT
-              </Link>
-              <Link href="/chat" className="u-text-2 hover:text-accent-400 u-calm">
-                CHAT
-              </Link>
-              <ThemeToggle className="theme-toggle-nav" />
               <AuthSlot isAuthenticated={isAuthenticated} email={email} orgLabel={orgLabel} />
+              <ThemeToggle className="theme-toggle-nav" />
             </div>
 
             <div className="md:hidden">
@@ -52,17 +40,8 @@ export function SiteNav({ isAuthenticated, email, orgLabel }: SiteNavProps) {
                 <Link href="/" className="u-text-2 hover:text-accent-400 u-calm text-[11px] tracking-wider font-alt">
                   HOME
                 </Link>
-                <Link href="/about" className="u-text-2 hover:text-accent-400 u-calm text-[11px] tracking-wider font-alt">
-                  ABOUT
-                </Link>
-                <Link href="/contact" className="u-text-2 hover:text-accent-400 u-calm text-[11px] tracking-wider font-alt">
-                  CONTACT
-                </Link>
-                <Link href="/chat" className="u-text-2 hover:text-accent-400 u-calm text-[11px] tracking-wider font-alt">
-                  CHAT
-                </Link>
-                <ThemeToggle />
                 <AuthSlot isAuthenticated={isAuthenticated} email={email} orgLabel={orgLabel} />
+                <ThemeToggle />
               </div>
             </div>
           </div>

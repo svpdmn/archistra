@@ -37,6 +37,7 @@ User preference is persisted in `localStorage` under `archistra-theme-mode`.
   - `text-black`, `bg-black`, `border-black`
 - Add or adjust theme values in `styles/theme.css` for both dark and light tokens.
 - Card and section surfaces must use shared surface tokens (for example `--surface-card-*`, `--surface-card-strong-*`, `--surface-cta-*`, `--surface-shimmer-*`) so new pages inherit mode-safe visuals.
+- Buttons must use Tailwind utility classes for size and layout on both static and Next surfaces; avoid reintroducing custom `btn-size-*` classes.
 
 ## Enforcement
 - Run `npm run theme:check` before pushing changes.

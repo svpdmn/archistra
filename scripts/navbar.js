@@ -3,9 +3,6 @@
     if (!mountNode) return;
 
     const homeHref = "/";
-    const aboutHref = "/about.html";
-    const securityHref = "/security.html";
-    const contactHref = "/contact.html";
     const chatHref = "/chat.html";
     const authLoginHref = "/auth/login?returnTo=/chat.html";
 
@@ -20,7 +17,7 @@
                 <button
                     id="desktop-auth-toggle"
                     type="button"
-                    class="btn btn-primary btn-size-nav auth-chip u-font-code"
+                    class="btn btn-primary auth-chip px-[0.875rem] py-[0.375rem] text-[0.6875rem] leading-4 u-font-code"
                     aria-expanded="false"
                     aria-controls="desktop-auth-menu"
                 >
@@ -34,7 +31,7 @@
                 </div>
             </div>
         `
-        : `<a href="${authLoginHref}" class="btn btn-primary btn-size-nav font-semibold u-font-code">SIGN UP</a>`;
+        : `<a href="${authLoginHref}" class="btn btn-primary px-[0.875rem] py-[0.375rem] text-[0.6875rem] leading-4 font-semibold u-font-code">SIGN UP</a>`;
 
     const authMobileSlot = authState.isAuthenticated
         ? `
@@ -42,7 +39,7 @@
                 <button
                     id="mobile-auth-toggle"
                     type="button"
-                    class="inline-flex items-center justify-center btn btn-primary btn-size-nav auth-chip u-font-code"
+                    class="inline-flex items-center justify-center btn btn-primary auth-chip px-[0.875rem] py-[0.375rem] text-[0.6875rem] leading-4 u-font-code"
                     aria-expanded="false"
                     aria-controls="mobile-auth-menu"
                 >
@@ -56,7 +53,7 @@
                 </div>
             </div>
         `
-        : `<a href="${authLoginHref}" class="inline-flex items-center justify-center btn btn-primary btn-size-nav font-semibold u-font-code">SIGN UP</a>`;
+        : `<a href="${authLoginHref}" class="inline-flex items-center justify-center btn btn-primary px-[0.875rem] py-[0.375rem] text-[0.6875rem] leading-4 font-semibold u-font-code">SIGN UP</a>`;
 
     const themeDesktopSlot = `
         <button
@@ -80,22 +77,14 @@
 
     const desktopLinks = `
         <a href="${homeHref}" class="u-text-2 hover:text-accent-400 u-calm">HOME</a>
-        <a href="${aboutHref}" class="u-text-2 hover:text-accent-400 u-calm">ABOUT</a>
-        <a href="${securityHref}" class="u-text-2 hover:text-accent-400 u-calm">SECURITY</a>
-        <a href="${contactHref}" class="u-text-2 hover:text-accent-400 u-calm">CONTACT</a>
-        <a href="${chatHref}" class="u-text-2 hover:text-accent-400 u-calm">CHAT</a>
-        ${themeDesktopSlot}
         ${authDesktopSlot}
+        ${themeDesktopSlot}
     `;
 
     const mobileLinks = `
         <a href="${homeHref}" class="block u-text-2 hover:text-accent-400 u-calm">HOME</a>
-        <a href="${aboutHref}" class="block u-text-2 hover:text-accent-400 u-calm">ABOUT</a>
-        <a href="${securityHref}" class="block u-text-2 hover:text-accent-400 u-calm">SECURITY</a>
-        <a href="${contactHref}" class="block u-text-2 hover:text-accent-400 u-calm">CONTACT</a>
-        <a href="${chatHref}" class="block u-text-2 hover:text-accent-400 u-calm">CHAT</a>
-        <div class="pt-1">${themeMobileSlot}</div>
         ${authMobileSlot}
+        <div class="pt-1">${themeMobileSlot}</div>
     `;
 
     mountNode.innerHTML = `

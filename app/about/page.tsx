@@ -72,10 +72,16 @@ export default async function AboutPage() {
       <section className="content-cta card">
         <p className="u-text-2">Ready to move from fragmented context to coherent execution?</p>
         <div className="home-actions">
-          <Link href="/chat" className="btn btn-primary btn-size-page font-semibold font-alt">
+          <Link
+            href="/chat"
+            className="btn btn-primary px-4 py-2.5 text-[0.8125rem] leading-[1.125rem] font-semibold font-alt"
+          >
             Open Chat Workspace
           </Link>
-          <Link href="/contact" className="btn btn-ghost btn-size-page font-semibold font-alt">
+          <Link
+            href="/contact"
+            className="btn btn-ghost px-4 py-2.5 text-[0.8125rem] leading-[1.125rem] font-semibold font-alt"
+          >
             Contact Team
           </Link>
         </div>

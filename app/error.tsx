@@ -24,11 +24,14 @@ export default function GlobalError({
           <button
             type="button"
             onClick={reset}
-            className="btn btn-primary btn-size-page w-full sm:w-auto font-semibold font-alt"
+            className="btn btn-primary w-full sm:w-auto px-4 py-2.5 text-[0.8125rem] leading-[1.125rem] font-semibold font-alt"
           >
             Try Again
           </button>
-          <Link href="/" className="btn btn-ghost btn-size-page w-full sm:w-auto font-semibold font-alt">
+          <Link
+            href="/"
+            className="btn btn-ghost w-full sm:w-auto px-4 py-2.5 text-[0.8125rem] leading-[1.125rem] font-semibold font-alt"
+          >
             Return Home
           </Link>
         </div>

@@ -19,10 +19,16 @@ export default async function UnauthorizedPage() {
           <h1 className="home-title font-display">Unauthorized</h1>
           <p className="lead">Your account is authenticated but does not have access to this workspace.</p>
           <div className="home-actions">
-            <Link href="/" className="btn btn-primary btn-size-page w-full sm:w-auto font-semibold font-alt">
+            <Link
+              href="/"
+              className="btn btn-primary w-full sm:w-auto px-4 py-2.5 text-[0.8125rem] leading-[1.125rem] font-semibold font-alt"
+            >
               Return Home
             </Link>
-            <a href="/auth/logout" className="btn btn-primary btn-size-page w-full sm:w-auto font-semibold font-alt">
+            <a
+              href="/auth/logout"
+              className="btn btn-primary w-full sm:w-auto px-4 py-2.5 text-[0.8125rem] leading-[1.125rem] font-semibold font-alt"
+            >
               Sign Out
             </a>
           </div>

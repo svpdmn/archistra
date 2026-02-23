@@ -21,10 +21,16 @@ export default async function HomePage() {
             AI-powered Strategy & Architecture Intelligence platform with secure Auth0 identity for B2C and B2B workflows.
           </p>
           <div className="home-actions">
-            <Link href="/chat" className="btn btn-primary btn-size-page w-full sm:w-auto font-semibold font-alt">
+            <Link
+              href="/chat"
+              className="btn btn-primary w-full sm:w-auto px-4 py-2.5 text-[0.8125rem] leading-[1.125rem] font-semibold font-alt"
+            >
               Continue to Chat
             </Link>
-            <Link href="/about" className="btn btn-ghost btn-size-page w-full sm:w-auto font-semibold font-alt">
+            <Link
+              href="/about"
+              className="btn btn-ghost w-full sm:w-auto px-4 py-2.5 text-[0.8125rem] leading-[1.125rem] font-semibold font-alt"
+            >
               Learn More
             </Link>
           </div>

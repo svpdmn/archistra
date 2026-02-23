@@ -48,7 +48,10 @@ export function AuthSlot({ isAuthenticated, email, orgLabel }: AuthSlotProps) {
 
   if (!isAuthenticated) {
     return (
-      <a href="/auth/login?returnTo=/chat" className="btn btn-primary btn-size-nav font-semibold u-font-code">
+      <a
+        href="/auth/login?returnTo=/chat"
+        className="btn btn-primary px-[0.875rem] py-[0.375rem] text-[0.6875rem] leading-4 font-semibold u-font-code"
+      >
         SIGN UP
       </a>
     );
@@ -59,7 +62,7 @@ export function AuthSlot({ isAuthenticated, email, orgLabel }: AuthSlotProps) {
       <button
         ref={buttonRef}
         type="button"
-        className="btn btn-primary btn-size-nav auth-chip u-font-code"
+        className="btn btn-primary auth-chip px-[0.875rem] py-[0.375rem] text-[0.6875rem] leading-4 u-font-code"
         aria-expanded={isOpen}
         aria-controls="next-auth-menu"
         onClick={() => setIsOpen((prev) => !prev)}

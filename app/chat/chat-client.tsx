@@ -170,7 +170,7 @@ export function ChatClient({ userEmail, orgName, orgId, roles }: ChatClientProps
             <button
               type="submit"
               disabled={!canSend}
-              className="btn btn-primary btn-size-page w-full sm:w-auto font-semibold font-alt"
+              className="btn btn-primary w-full sm:w-auto px-4 py-2.5 text-[0.8125rem] leading-[1.125rem] font-semibold font-alt"
             >
               {isLoading ? "Sending..." : "Send"}
             </button>

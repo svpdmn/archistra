@@ -26,14 +26,26 @@
     --focus-alpha: 0.55;
     --danger-rgb: 248 113 113;
     --btn-fg-rgb: 236 241 248;
-    --btn-border-rgb: 194 206 219;
-    --btn-border-alpha: 0.62;
+    --btn-border-rgb: 196 208 224;
+    --btn-border-alpha: 0.78;
+    --btn-base-rgb: 129 143 163;
+    --btn-mid-rgb: 90 102 123;
+    --btn-edge-rgb: 221 230 242;
+    --btn-brush-rgb: 246 250 255;
+    --btn-brush-alpha: 0.18;
     --btn-sheen-rgb: 255 255 255;
+    --btn-highlight-alpha: 0.28;
     --btn-shadow-inset-rgb: 255 255 255;
-    --btn-shadow-deep-rgb: 35 42 54;
+    --btn-shadow-deep-rgb: 18 26 40;
     --btn-shadow-drop-rgb: 0 0 0;
+    --btn-shadow-inset-alpha: 0.42;
+    --btn-shadow-deep-alpha: 0.44;
+    --btn-shadow-drop-alpha: 0.34;
     --btn-text-shadow-rgb: 8 11 18;
-    --btn-text-shadow-alpha: 0.35;
+    --btn-text-shadow-alpha: 0.34;
+    --btn-primary-fill-alpha: 0.88;
+    --btn-secondary-fill-alpha: 0.78;
+    --btn-ghost-fill-alpha: 0.66;
     --shadow-e1: 0 8px 24px rgba(0, 0, 0, 0.35);
     --shadow-e2: 0 16px 48px rgba(0, 0, 0, 0.45);
     --shadow-e3: 0 24px 80px rgba(0, 0, 0, 0.55);
@@ -100,15 +112,27 @@
     --focus-rgb: 0 113 227;
     --focus-alpha: 0.45;
     --danger-rgb: 180 35 24;
-    --btn-fg-rgb: 29 29 31;
-    --btn-border-rgb: 191 191 196;
-    --btn-border-alpha: 0.85;
+    --btn-fg-rgb: 33 38 46;
+    --btn-border-rgb: 118 128 144;
+    --btn-border-alpha: 0.82;
+    --btn-base-rgb: 205 214 226;
+    --btn-mid-rgb: 156 168 186;
+    --btn-edge-rgb: 248 251 255;
+    --btn-brush-rgb: 90 102 120;
+    --btn-brush-alpha: 0.14;
     --btn-sheen-rgb: 255 255 255;
+    --btn-highlight-alpha: 0.40;
     --btn-shadow-inset-rgb: 255 255 255;
-    --btn-shadow-deep-rgb: 196 201 209;
-    --btn-shadow-drop-rgb: 129 140 153;
+    --btn-shadow-deep-rgb: 118 130 149;
+    --btn-shadow-drop-rgb: 103 114 132;
+    --btn-shadow-inset-alpha: 0.56;
+    --btn-shadow-deep-alpha: 0.30;
+    --btn-shadow-drop-alpha: 0.26;
     --btn-text-shadow-rgb: 255 255 255;
-    --btn-text-shadow-alpha: 0.55;
+    --btn-text-shadow-alpha: 0.14;
+    --btn-primary-fill-alpha: 0.84;
+    --btn-secondary-fill-alpha: 0.76;
+    --btn-ghost-fill-alpha: 0.66;
     --shadow-e1: 0 8px 24px rgba(17, 24, 39, 0.10);
     --shadow-e2: 0 16px 48px rgba(17, 24, 39, 0.14);
     --shadow-e3: 0 24px 80px rgba(17, 24, 39, 0.20);
@@ -406,69 +430,215 @@ h6 {
     color: rgba(var(--text-2), 0.72);
 }
 
-:where(.btn) {
+.btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    appearance: none;
+    -webkit-appearance: none;
     border-radius: 0;
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+    min-height: 2.5rem;
+    padding: var(--btn-py, 0.625rem) var(--btn-px, 1rem);
+    font-size: var(--btn-fs, 0.8125rem);
+    line-height: var(--btn-lh, 1.125rem);
     font-weight: 600;
-    transition: all 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    border: 1px solid rgba(var(--btn-border-rgb), var(--btn-border-alpha));
+    text-decoration: none;
+    white-space: nowrap;
+    user-select: none;
+    cursor: pointer;
+    transition:
+        transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        filter 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    border: 1px solid transparent;
     color: rgba(var(--btn-fg-rgb), 0.96);
-    background-image:
-        linear-gradient(120deg, rgba(var(--btn-sheen-rgb), 0.35) 0%, rgba(var(--btn-sheen-rgb), 0.2) 22%, rgba(var(--btn-sheen-rgb), 0.3) 48%, rgba(var(--btn-sheen-rgb), 0.26) 70%, rgba(var(--btn-sheen-rgb), 0.34) 100%),
-        radial-gradient(circle at top, rgba(var(--btn-sheen-rgb), 0.38) 0%, rgba(var(--btn-sheen-rgb), 0) 56%);
-    box-shadow:
-        inset 0 1px 0 rgba(var(--btn-shadow-inset-rgb), 0.5),
-        inset 0 -16px 24px rgba(var(--btn-shadow-deep-rgb), 0.34),
-        0 8px 16px rgba(var(--btn-shadow-drop-rgb), 0.30);
-    text-shadow: 0 1px 1px rgba(var(--btn-text-shadow-rgb), var(--btn-text-shadow-alpha));
+    background-color: transparent;
 }
 
-:where(.btn-primary) {
-    border-color: rgba(var(--btn-border-rgb), var(--btn-border-alpha));
+.btn:disabled,
+.btn[aria-disabled="true"] {
+    opacity: 0.58;
+    cursor: not-allowed;
+    pointer-events: none;
+    filter: saturate(0.7);
 }
 
-:where(.btn-primary):hover {
-    filter: brightness(1.05);
+.btn-primary,
+.btn-secondary,
+.btn-ghost,
+.mobile-menu-toggle {
+    border-radius: 0;
+    position: relative !important;
+    z-index: 20;
+    isolation: isolate;
+    background-image: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    text-shadow: none !important;
 }
 
-:where(.btn-primary):active {
-    filter: brightness(0.98);
+.btn-primary {
+    border: 1px solid rgba(var(--accent-500), 1) !important;
+    background: transparent !important;
+    color: rgba(var(--accent-500), 1) !important;
+    box-shadow: none !important;
 }
 
-:where(.btn-secondary) {
-    border-color: rgba(var(--btn-border-rgb), calc(var(--btn-border-alpha) - 0.08));
+.btn-secondary {
+    border: 1px solid rgba(var(--accent-500), 1) !important;
+    background: transparent !important;
+    color: rgba(var(--accent-500), 1) !important;
+    box-shadow: none !important;
 }
 
-:where(.btn-secondary):hover {
-    background: rgba(var(--glass-fill), 0.06);
+.btn-ghost {
+    border: 1px solid rgba(var(--accent-500), 1) !important;
+    background: transparent !important;
+    color: rgba(var(--accent-500), 1) !important;
+    box-shadow: none !important;
 }
 
-:where(.btn-ghost) {
-    border-color: rgba(var(--btn-border-rgb), calc(var(--btn-border-alpha) - 0.12));
-    color: rgba(var(--text-1), 0.90);
+.mobile-menu-toggle {
+    border: 1px solid rgba(var(--accent-500), 1) !important;
+    background: transparent !important;
+    color: rgba(var(--accent-500), 1) !important;
+    box-shadow: none !important;
 }
 
-:where(.btn-ghost):hover {
-    background: rgba(var(--glass-fill), 0.07);
-    color: rgba(var(--text-1), 0.92);
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-ghost:hover,
+.mobile-menu-toggle:hover {
+    background: rgb(var(--accent-500)) !important;
+    border-color: rgba(var(--accent-500), 0.98) !important;
+    color: rgba(255, 255, 255, 0.98) !important;
+    transform: none !important;
+    filter: none !important;
 }
 
-.btn-size-nav {
-    padding: 0.375rem 0.875rem;
-    font-size: 0.6875rem;
-    line-height: 1rem;
+.btn-primary:active,
+.btn-secondary:active,
+.btn-ghost:active,
+.mobile-menu-toggle:active {
+    background: rgba(var(--accent-500), 0.84) !important;
+    border-color: rgba(var(--accent-500), 0.84) !important;
+    color: rgba(255, 255, 255, 0.98) !important;
+    transform: none !important;
+    filter: none !important;
 }
 
-.btn-size-page {
-    padding: 0.625rem 1rem;
-    font-size: 0.8125rem;
-    line-height: 1.125rem;
+/*
+ * Button utility fallbacks.
+ * These keep button sizing/layout consistent on both static pages and Next routes,
+ * even when utility generation is unavailable at runtime.
+ */
+.btn.w-full {
+    width: 100%;
+}
+
+.btn.px-4 {
+    --btn-px: 1rem;
+}
+
+.btn.px-5 {
+    --btn-px: 1.25rem;
+}
+
+.btn.px-6 {
+    --btn-px: 1.5rem;
+}
+
+.btn.px-7 {
+    --btn-px: 1.75rem;
+}
+
+.btn.px-\[0\.875rem\] {
+    --btn-px: 0.875rem;
+}
+
+.btn.py-2\.5 {
+    --btn-py: 0.625rem;
+}
+
+.btn.py-3 {
+    --btn-py: 0.75rem;
+}
+
+.btn.py-4 {
+    --btn-py: 1rem;
+}
+
+.btn.py-\[0\.375rem\] {
+    --btn-py: 0.375rem;
+}
+
+.btn.text-xs {
+    --btn-fs: 0.75rem;
+    --btn-lh: 1rem;
+}
+
+.btn.text-sm {
+    --btn-fs: 0.875rem;
+    --btn-lh: 1.25rem;
+}
+
+.btn.text-\[0\.6875rem\] {
+    --btn-fs: 0.6875rem;
+    --btn-lh: 1rem;
+}
+
+.btn.text-\[0\.8125rem\] {
+    --btn-fs: 0.8125rem;
+    --btn-lh: 1.125rem;
+}
+
+.btn.text-\[11px\] {
+    --btn-fs: 0.6875rem;
+    --btn-lh: 1rem;
+}
+
+.btn.leading-4 {
+    --btn-lh: 1rem;
+}
+
+.btn.leading-\[1\.125rem\] {
+    --btn-lh: 1.125rem;
+}
+
+@media (min-width: 640px) {
+    .btn.sm\:w-auto {
+        width: auto;
+    }
+
+    .btn.sm\:px-6 {
+        --btn-px: 1.5rem;
+    }
+
+    .btn.sm\:px-10 {
+        --btn-px: 2.5rem;
+    }
+
+    .btn.sm\:py-3 {
+        --btn-py: 0.75rem;
+    }
+
+    .btn.sm\:py-5 {
+        --btn-py: 1.25rem;
+    }
+
+    .btn.sm\:text-sm {
+        --btn-fs: 0.875rem;
+        --btn-lh: 1.25rem;
+    }
+
+    .btn.sm\:text-base {
+        --btn-fs: 1rem;
+        --btn-lh: 1.5rem;
+    }
 }
 
 .site-nav {
@@ -702,20 +872,34 @@ a {
 }
 
 .theme-toggle {
+    appearance: none;
+    -webkit-appearance: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    border: 1px solid rgba(var(--border-subtle), 0.25);
-    background: rgba(var(--glass-fill), 0.08);
-    color: rgba(var(--text-1), 0.88);
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: rgba(var(--text-1), 0.84);
     border-radius: 0;
-    transition: all 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition:
+        transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .theme-toggle:hover {
-    background: rgba(var(--glass-fill), 0.15);
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: rgba(var(--accent-500), 0.95);
+    transform: none !important;
+    filter: none !important;
+}
+
+.theme-toggle:active {
+    color: rgba(var(--accent-500), 0.82);
 }
 
 .theme-toggle-nav {
@@ -723,13 +907,15 @@ a {
 }
 
 .mobile-menu-toggle {
-    color: rgba(var(--text-1), 0.84);
-    border: 1px solid rgba(var(--border-subtle), 0.25);
-    background: rgba(var(--glass-fill), 0.08);
-}
-
-.mobile-menu-toggle:hover {
-    background: rgba(var(--glass-fill), 0.16);
+    appearance: none;
+    -webkit-appearance: none;
+    transition:
+        transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        filter 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .theme-toggle:focus-visible {
