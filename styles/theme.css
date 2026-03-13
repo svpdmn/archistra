@@ -199,16 +199,16 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Tektur", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 /* Compatibility utilities for shared multi-page rendering. */
 .font-display {
-    font-family: "Tektur", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .font-alt {
-    font-family: "Play", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .u-font-ui {
@@ -687,7 +687,7 @@ h6 {
     padding: 0.375rem 0.5rem;
     font-size: 0.6875rem;
     line-height: 1rem;
-    font-family: "Play", sans-serif;
+    font-family: "Inter", sans-serif;
     color: rgba(var(--text-1), 0.96);
 }
 

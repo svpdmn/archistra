@@ -3,9 +3,9 @@ const archistraTailwindConfig = {
         extend: {
             fontFamily: {
                 sans: ["Geo", "sans-serif"],
-                display: ["Tektur", "sans-serif"],
+                display: ["Inter", "sans-serif"],
                 mono: ["Space Mono", "monospace"],
-                alt: ["Play", "sans-serif"],
+                alt: ["Inter", "sans-serif"],
             },
             colors: {
                 bg: {
