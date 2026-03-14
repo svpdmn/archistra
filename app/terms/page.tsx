@@ -11,7 +11,12 @@ export default async function TermsPage() {
     <SitePageShell
       eyebrow="LEGAL"
       title="Terms of Service"
-      lead="Effective date: February 21, 2026. By using archistra, you agree to these terms."
+      lead={
+        <>
+          Effective date: February 21, 2026. By using <span className="font-brand">archistra</span>, you agree to these
+          terms.
+        </>
+      }
     >
       <section className="content-section">
         <h2 className="content-section-title font-alt">Use of Service</h2>

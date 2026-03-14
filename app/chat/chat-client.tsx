@@ -118,7 +118,9 @@ export function ChatClient({ userEmail, orgName, orgId, roles }: ChatClientProps
         <header className="chat-header">
           <div>
             <p className="font-mono text-accent-400 text-xs tracking-widest">CHAT UI</p>
-            <h1 className="chat-title font-display">archistra Assistant</h1>
+            <h1 className="chat-title font-display">
+              <span className="font-brand">archistra</span> Assistant
+            </h1>
             <p className="lead">Authenticated workspace with organization-aware access controls.</p>
           </div>
         </header>

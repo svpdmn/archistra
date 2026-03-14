@@ -15,7 +15,7 @@ export function SiteNav({ isAuthenticated, email, orgLabel }: SiteNavProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
           <div className="flex items-center">
-            <Link href="/" className="site-nav-brand font-semibold font-display logo-glow">
+            <Link href="/" className="site-nav-brand font-semibold font-brand logo-glow">
               archistra
             </Link>
           </div>

@@ -38,13 +38,19 @@ export default async function AboutPage() {
     <SitePageShell
       eyebrow="COMPANY"
       title="Enterprise intelligence with architectural rigor."
-      lead="archistra is built for teams that need strategic speed without sacrificing system integrity."
+      lead={
+        <>
+          <span className="font-brand">archistra</span> is built for teams that need strategic speed without sacrificing
+          system integrity.
+        </>
+      }
     >
       <section className="content-section">
         <h2 className="content-section-title font-alt">What We Solve</h2>
         <p className="u-text-2">
           Most organizations struggle with fragmented planning, disconnected architecture artifacts, and execution drift.
-          archistra provides a unified workspace to align strategy, capabilities, and implementation paths.
+          <span className="font-brand">archistra</span> provides a unified workspace to align strategy, capabilities, and
+          implementation paths.
         </p>
       </section>
 

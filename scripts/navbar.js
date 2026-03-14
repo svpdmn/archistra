@@ -92,7 +92,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
                 <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
                     <div class="flex items-center">
-                        <a href="${homeHref}" class="site-nav-brand font-semibold font-display logo-glow">archistra</a>
+                        <a href="${homeHref}" class="site-nav-brand font-semibold font-brand logo-glow">archistra</a>
                     </div>
 
                     <div class="flex justify-center">

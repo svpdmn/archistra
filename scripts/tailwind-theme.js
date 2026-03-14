@@ -2,7 +2,7 @@ const archistraTailwindConfig = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Geo", "sans-serif"],
+                sans: ["Inter", "sans-serif"],
                 display: ["Inter", "sans-serif"],
                 mono: ["Space Mono", "monospace"],
                 alt: ["Inter", "sans-serif"],

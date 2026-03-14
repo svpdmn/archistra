@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 type SitePageShellProps = {
   eyebrow: string;
   title: string;
-  lead: string;
+  lead: ReactNode;
   children: ReactNode;
 };
 

@@ -71,13 +71,13 @@
                         <div class="flex flex-col items-center text-center">
                             <a href="${homeHref}" class="flex flex-col items-center justify-center gap-2 mb-2" aria-label="Archistra home">
                                 <img src="assets/archistra-logo.svg" alt="Archistra logo" class="w-10 h-10" />
-                                <span class="text-2xl font-semibold font-display">archistra</span>
+                                <span class="text-2xl font-semibold font-brand">archistra</span>
                             </a>
                             <p class="u-text-3 text-xs">[built on first principles]</p>
                         </div>
 
-                        <div class="u-text-3 text-xs font-alt text-center opacity-50">
-                            © 2026 archistra. all rights reserved.
+                        <div class="u-text-3 text-xs font-alt text-center opacity-40">
+                            © 2026 <span class="font-brand">archistra</span>. all rights reserved.
                         </div>
                     </div>
                 </div>

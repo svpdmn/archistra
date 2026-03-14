@@ -3,7 +3,7 @@ import "./globals.css";
 import { AmbientParticles } from "@/components/background/ambient-particles";
 
 const siteFontsHref =
-  "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geo:wght@400&family=Space+Mono:wght@400;700&display=swap";
+  "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Play:wght@400;700&family=Space+Mono:wght@400;700&display=swap";
 
 function resolveBaseUrl(): URL {
   const value = process.env.APP_BASE_URL || process.env.AUTH0_BASE_URL || "http://localhost:3000";

@@ -23,8 +23,8 @@ body {
 
 .home-title {
   margin: 0;
-  font-size: clamp(2rem, 4vw, 3.6rem);
-  line-height: 1.05;
+  font-size: var(--section-heading-size);
+  line-height: var(--section-heading-line-height);
 }
 
 .home-actions {
@@ -56,7 +56,7 @@ body {
 
 .content-page-title {
   margin: 0;
-  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-size: clamp(1.625rem, 3.5vw, 2.575rem);
   line-height: 1.08;
 }
 
@@ -72,8 +72,8 @@ body {
 
 .content-section-title {
   margin: 0;
-  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
-  line-height: 1.2;
+  font-size: var(--section-heading-size);
+  line-height: var(--section-heading-line-height);
 }
 
 .content-grid {
@@ -90,7 +90,7 @@ body {
 
 .content-card h3 {
   margin: 0;
-  font-size: 1rem;
+  font-size: calc(1rem - 2px);
 }
 
 .content-card p {
@@ -132,7 +132,7 @@ body {
 
 .site-footer-heading {
   margin: 0 0 6px;
-  font-size: 0.72rem;
+  font-size: 0.6rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(var(--text-3), 0.85);
@@ -141,7 +141,7 @@ body {
 .site-footer-links {
   display: grid;
   gap: 4px;
-  font-size: 0.8rem;
+  font-size: 0.675rem;
   color: rgba(var(--text-2), 0.85);
 }
 
@@ -151,7 +151,7 @@ body {
 
 .site-footer-copy {
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 0.575rem;
 }
 
 .chat-page-root {
@@ -205,7 +205,7 @@ body {
 
 .chat-title {
   margin: 8px 0 0;
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(1.5rem, 2.7vw, 2.075rem);
 }
 
 .chat-thread {
@@ -249,7 +249,7 @@ body {
   color: rgba(var(--text-1), 0.94);
   border: 1px solid rgba(var(--border-subtle), 0.16);
   padding: 10px 12px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.45;
 }
 

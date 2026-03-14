@@ -34,7 +34,9 @@ export function SiteFooter() {
           </section>
         </div>
 
-        <p className="site-footer-copy u-text-3 font-alt">© {year} archistra. Built on first principles.</p>
+        <p className="site-footer-copy u-text-3 font-alt text-center opacity-40">
+          © {year} <span className="font-brand">archistra</span>. all rights reserved.
+        </p>
         <nav aria-label="Social media links" className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs font-alt">
           <a
             href="https://discord.gg/SZ9PXJfG"
