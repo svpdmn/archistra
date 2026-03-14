@@ -839,6 +839,17 @@ a {
     animation: pulse 3s ease-in-out infinite;
 }
 
+.site-nav-brand {
+    font-size: 22px !important;
+    line-height: 1;
+}
+
+@media (min-width: 640px) {
+    .site-nav-brand {
+        font-size: 26px !important;
+    }
+}
+
 .cta-static-bg {
     background: linear-gradient(145deg, rgba(var(--surface-cta-rgb), var(--surface-cta-alpha)), rgba(var(--surface-cta-rgb), var(--surface-cta-alpha)));
 }
